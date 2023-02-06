@@ -16,10 +16,10 @@ import it.sincon.p2_presentazione_istanze_v2.Services.dtos.UserDTO;
 import it.sincon.p2_presentazione_istanze_v2.Services.services.UserService;
 
 
-@SpringBootTest(classes = SpringAppApplication.class)
-class SpringAppApplicationTests {
+@SpringBootTest(classes = PresentazioneIstanzeV2Application.class)
+class SpringApplicationTests {
 
-	private static final Logger log = LoggerFactory.getLogger(SpringAppApplicationTests.class);
+	private static final Logger log = LoggerFactory.getLogger(SpringApplicationTests.class);
 
 	@Autowired
     private UserRepository userRepo;

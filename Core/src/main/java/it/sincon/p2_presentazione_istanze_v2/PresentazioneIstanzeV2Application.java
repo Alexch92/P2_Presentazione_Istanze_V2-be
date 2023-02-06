@@ -17,14 +17,14 @@ import org.springframework.stereotype.Component;
 import org.apache.commons.lang3.StringUtils;
 
 @SpringBootApplication
-public class SpringAppApplication {
+public class PresentazioneIstanzeV2Application {
 
-	private static final Logger log = LoggerFactory.getLogger(SpringAppApplication.class);
+	private static final Logger log = LoggerFactory.getLogger(PresentazioneIstanzeV2Application.class);
 
     
 	public static void main(String[] args) {
     
-        SpringApplication app = new SpringApplication(SpringAppApplication.class);
+        SpringApplication app = new SpringApplication(PresentazioneIstanzeV2Application.class);
         Environment env = app.run(args).getEnvironment();
         logApplicationStartup(env);
 	}
