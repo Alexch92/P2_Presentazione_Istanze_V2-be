@@ -9,7 +9,7 @@
 
   <groupId>it.sincon</groupId>
   <artifactId>Core</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.0.1-SNAPSHOT</version>
 
   <name>Core</name>
   <!-- FIXME change it to the project's website -->
@@ -28,11 +28,21 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+			<groupId>it.sincon</groupId>
+			<artifactId>Services</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
   </dependencies>
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>

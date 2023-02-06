@@ -3,6 +3,8 @@ package it.sincon.p2_presentazione_istanze_v2.Services.interfaces;
 import java.util.List;
 import java.util.Set;
 
+import it.sincon.p2_presentazione_istanze_v2.DataAccess.interfaces.IEntity;
+
 
 @SuppressWarnings("rawtypes")
 public interface IMapper<E extends IEntity, D extends IDTO> {

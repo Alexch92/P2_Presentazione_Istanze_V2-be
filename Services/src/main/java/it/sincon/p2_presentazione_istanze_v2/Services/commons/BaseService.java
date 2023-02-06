@@ -3,6 +3,7 @@ package it.sincon.p2_presentazione_istanze_v2.Services.commons;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import it.sincon.p2_presentazione_istanze_v2.Commons.Enums.LogArea;
 import it.sincon.p2_presentazione_istanze_v2.DataAccess.interfaces.IEntity;
 import it.sincon.p2_presentazione_istanze_v2.DataAccess.interfaces.IRepository;
 import it.sincon.p2_presentazione_istanze_v2.Services.interfaces.IDTO;

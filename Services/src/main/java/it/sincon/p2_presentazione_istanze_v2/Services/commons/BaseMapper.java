@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import it.sincon.p2_presentazione_istanze_v2.DataAccess.interfaces.IEntity;
 import it.sincon.p2_presentazione_istanze_v2.Services.interfaces.IDTO;
 import it.sincon.p2_presentazione_istanze_v2.Services.interfaces.IMapper;
 
