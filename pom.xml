@@ -104,9 +104,11 @@
 		</plugins>
 	</build>
 
-<modules>  <module>Core</module>
+<modules>  
+	<module>Core</module>
     <module>Commons</module>
     <module>DataAccess</module>
     <module>Services</module>
+    <module>Tests</module>
   </modules>
 </project>

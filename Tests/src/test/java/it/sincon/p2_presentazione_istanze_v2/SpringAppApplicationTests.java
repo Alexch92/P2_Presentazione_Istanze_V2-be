@@ -34,7 +34,7 @@ class SpringAppApplicationTests {
 
 	@Test
 	@Profile(value="dev")
-	void HubRepository() {
+	void ExecuteRepository() {
 
 		User user = new User();
         user.setName("Alessandro");
@@ -52,7 +52,7 @@ class SpringAppApplicationTests {
 
 	@Test
 	@Profile(value="dev")
-	void HubService() throws Exception {
+	void ExecuteService() throws Exception {
 
 		Integer id = 1;
 		String updateTest = "Marco";

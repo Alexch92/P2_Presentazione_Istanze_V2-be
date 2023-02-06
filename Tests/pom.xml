@@ -7,11 +7,11 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
-  <groupId>it.sincon</groupId>
-  <artifactId>DataAccess</artifactId>
+  <groupId>it</groupId>
+  <artifactId>Tests</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
-  <name>DataAccess</name>
+  <name>Tests</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -22,6 +22,7 @@
   </properties>
 
   <dependencies>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -30,10 +31,11 @@
     </dependency>
 
     <dependency>
-			<groupId>it.sincon</groupId>
-			<artifactId>Commons</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
+      <groupId>it.sincon</groupId>
+      <artifactId>Core</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+
   </dependencies>
 
   <build>
