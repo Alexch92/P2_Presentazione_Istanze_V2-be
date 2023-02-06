@@ -8,7 +8,7 @@
 		<version>2.7.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.sincon.springapp</groupId>
+	<groupId>it.sincon</groupId>
 	<artifactId>spring-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-app</name>
