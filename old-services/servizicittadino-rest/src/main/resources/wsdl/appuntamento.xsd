@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://cup.sanita.puglia.it/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://cup.sanita.puglia.it/">
+	<xsd:include schemaLocation="unita.xsd"/>
+	<xsd:include schemaLocation="listaPrestazioni.xsd"/>
+	<xsd:include schemaLocation="sede.xsd"/>
+	<xsd:complexType name="Appuntamento">
+		<xsd:sequence>
+            <xsd:element name="idAppuntamento" minOccurs="0"  nillable="true" type="xsd:string"/>
+            <xsd:element name="statoAppuntamento" minOccurs="0" nillable="true" type="xsd:string"/>
+            <xsd:element name="dataAppuntamento" nillable="true" type="xsd:string"/>
+            <xsd:element name="oraAppuntamento" nillable="true" type="xsd:string"/>
+			<xsd:element name="dataModificaStato"  minOccurs="0" nillable="true" type="xsd:string"/>
+			<xsd:element name="codiceBranca"  minOccurs="0" nillable="true" type="xsd:string"/>
+			<xsd:element name="unita" nillable="true" type="tns:Unita"/>
+			<xsd:element name="sede" minOccurs="0" nillable="true" type="tns:Sede"/>
+			<xsd:element name="listaPrestazioni" minOccurs="0"  nillable="true" type="tns:ListaPrestazioni"/>
+		</xsd:sequence>
+	</xsd:complexType>	
+
+</xsd:schema>

@@ -1,0 +1,29 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>it.sincon</groupId>
+		<artifactId>p2_presentazione_istanze_v2</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>redditoenergetico-services</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<name>Services Project</name>
+	
+	<properties>
+		<!-- Maven Settings -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<modules>
+		<module>protocollo-service</module>
+		<module>documentale-service</module>
+		<module>calendar-service</module>
+		<module>visura-service</module>
+		<module>domain-service</module>
+		<!-- <module>pugliasalute-restful</module>
+		<module>servizicittadino-rest</module>--> 
+		
+	</modules>
+</project>

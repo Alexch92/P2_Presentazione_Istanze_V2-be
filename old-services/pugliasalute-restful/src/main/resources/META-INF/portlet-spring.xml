@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:task="http://www.springframework.org/schema/task" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd     http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+	<bean id="it.sincon.sanita.services.service.CategoriaStrutturaLocalService" class="it.sincon.sanita.services.service.impl.CategoriaStrutturaLocalServiceImpl" />
+	<bean id="it.sincon.sanita.services.service.CategoriaStrutturaService" class="it.sincon.sanita.services.service.impl.CategoriaStrutturaServiceImpl" />
+	<bean id="it.sincon.sanita.services.service.persistence.CategoriaStrutturaPersistence" class="it.sincon.sanita.services.service.persistence.CategoriaStrutturaPersistenceImpl" parent="basePersistence" />
+	<bean id="it.sincon.sanita.services.service.CFG_CategorieAbilitateLocalService" class="it.sincon.sanita.services.service.impl.CFG_CategorieAbilitateLocalServiceImpl" />
+	<bean id="it.sincon.sanita.services.service.persistence.CFG_CategorieAbilitatePersistence" class="it.sincon.sanita.services.service.persistence.CFG_CategorieAbilitatePersistenceImpl" parent="basePersistence" />
+	<bean id="it.sincon.sanita.services.service.NewsLocalService" class="it.sincon.sanita.services.service.impl.NewsLocalServiceImpl" />
+	<bean id="it.sincon.sanita.services.service.NewsService" class="it.sincon.sanita.services.service.impl.NewsServiceImpl" />
+	<bean id="it.sincon.sanita.services.service.persistence.NewsPersistence" class="it.sincon.sanita.services.service.persistence.NewsPersistenceImpl" parent="basePersistence" />
+	<bean id="it.sincon.sanita.services.service.persistence.NewsFinder" class="it.sincon.sanita.services.service.persistence.NewsFinderImpl" parent="basePersistence" />
+	<bean id="it.sincon.sanita.services.service.StrutturaSanitariaLocalService" class="it.sincon.sanita.services.service.impl.StrutturaSanitariaLocalServiceImpl" />
+	<bean id="it.sincon.sanita.services.service.StrutturaSanitariaService" class="it.sincon.sanita.services.service.impl.StrutturaSanitariaServiceImpl" />
+	<bean id="it.sincon.sanita.services.service.persistence.StrutturaSanitariaPersistence" class="it.sincon.sanita.services.service.persistence.StrutturaSanitariaPersistenceImpl" parent="basePersistence" />
+	<bean id="it.sincon.sanita.services.service.persistence.StrutturaSanitariaFinder" class="it.sincon.sanita.services.service.persistence.StrutturaSanitariaFinderImpl" parent="basePersistence" />
+	<bean id="it.sincon.sanita.services.service.StrutturaSanitariaFigliaLocalService" class="it.sincon.sanita.services.service.impl.StrutturaSanitariaFigliaLocalServiceImpl" />
+	<bean id="it.sincon.sanita.services.service.StrutturaSanitariaFigliaService" class="it.sincon.sanita.services.service.impl.StrutturaSanitariaFigliaServiceImpl" />
+	<bean id="it.sincon.sanita.services.service.persistence.StrutturaSanitariaFigliaPersistence" class="it.sincon.sanita.services.service.persistence.StrutturaSanitariaFigliaPersistenceImpl" parent="basePersistence" />
+	<bean id="sanitaRestTasksImpl" class="it.sincon.sanita.scheduler.AggiornaRestDataTask" />
+	<task:annotation-driven scheduler="sanitaRestScheduler" />
+	<task:scheduler id="sanitaRestScheduler" pool-size="1" />
+	<task:scheduled-tasks scheduler="sanitaRestScheduler">
+		<!-- Aggiorno le StruttureSanitarie alla Mezzanotte di ogni giorno lavorativo... -->
+		<task:scheduled ref="sanitaRestTasksImpl" method="updateStrutturaSanitaria" cron="0 0 0 * * *" />
+		<!-- Aggiorno le StruttureSanitarie ogni 6 ore (21600000 millisec)... -->
+		<!-- <task:scheduled ref="sanitaRestTasksImpl" method="updateStrutturaSanitaria" fixed-rate="21600000" /> -->
+		<!-- Aggiorno le News ogni 6 ore (21600000 millisec)... -->
+		<!-- <task:scheduled ref="sanitaRestTasksImpl" method="updateNews" fixed-rate="21600000" /> -->
+	</task:scheduled-tasks>
+</beans>

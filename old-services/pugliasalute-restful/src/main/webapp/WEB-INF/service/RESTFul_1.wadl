@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://wadl.dev.java.net/2009/02">
+  <doc xml:lang="en" title="RESTFul"/>
+  <resources base="http://localhost:8080">
+    <resource path="pugliasalute-restful-portlet/services/strutture/categorie" id="HelloSample">
+      <doc xml:lang="it" title="ListaCategorie"/>
+      <method name="GET" id="GET_ALL_CATEGORIE">
+        <doc xml:lang="en" title="GET_ALL_CATEGORIE"/>
+        <request/>
+        <response status="200">
+          <representation mediaType="application/json;charset=UTF-8"/>
+        </response>
+      </method>
+      
+    </resource>
+  </resources>
+</application>

@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="it.sincon.sanita.services.model.CategoriaStruttura">
+		<field name="idTipoStruttura" type="String" />
+		<field name="denominazione" type="String" />
+	</model>
+	<model name="it.sincon.sanita.services.model.CFG_CategorieAbilitate">
+		<field name="titoloStruttura" type="String">
+			<hint name="max-length">255</hint>
+		</field>
+		<field name="denominazione" type="String">
+			<hint name="max-length">255</hint>
+		</field>
+		<field name="ordine" type="int" />
+		<field name="className" type="String">
+			<hint name="max-length">255</hint>
+		</field>
+		<field name="defaultRicerca" type="boolean" />
+	</model>
+	<model name="it.sincon.sanita.services.model.News">
+		<field name="pk" type="long" />
+		<field name="idNews" type="long" />
+		<field name="idAzienda" type="String" />
+		<field name="titolo" type="String">
+			<hint name="max-length">2000</hint>
+		</field>
+		<field name="immagine" type="String">
+			<hint name="max-length">255</hint>
+		</field>
+		<field name="descrizione" type="String">
+			<hint name="max-length">5000</hint>
+		</field>
+		<field name="dataPubblicazione" type="long" />
+		<field name="autore" type="String">
+			<hint name="max-length">255</hint>
+		</field>
+		<field name="locale" type="String" />
+	</model>
+	<model name="it.sincon.sanita.services.model.StrutturaSanitaria">
+		<field name="pk" type="long" />
+		<field name="idStruttura" type="long" />
+		<field name="groupId" type="long" />
+		<field name="idTipoStruttura" type="String">
+			<hint name="max-length">255</hint>
+		</field>
+		<field name="tipoStruttura" type="String">
+			<hint name="max-length">255</hint>
+		</field>
+		<field name="tipologia" type="String">
+			<hint name="max-length">255</hint>
+		</field>
+		<field name="denominazione" type="String">
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="immagine" type="String">
+			<hint name="max-length">255</hint>
+		</field>
+		<field name="descrizione" type="String">
+			<hint name="max-length">5000</hint>
+		</field>
+		<field name="indirizzo" type="String">
+			<hint name="max-length">255</hint>
+		</field>
+		<field name="lat" type="double" />
+		<field name="lng" type="double" />
+		<field name="distanza" type="double" />
+		<field name="telefono" type="String" />
+		<field name="email" type="String">
+			<hint name="max-length">255</hint>
+		</field>
+		<field name="fax" type="String" />
+		<field name="orari" type="String">
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="locale" type="String" />
+		<field name="stato" type="int" />
+		<field name="childrenEdottoOspedaleCollegato" type="String">
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="childrenEdottoAmbulatorio" type="String">
+			<hint name="max-length">2000</hint>
+		</field>
+		<field name="childrenEdottoUnitaOperativa" type="String">
+			<hint name="max-length">2000</hint>
+		</field>
+		<field name="childrenEdottoUnitaps" type="String">
+			<hint name="max-length">500</hint>
+		</field>
+		<field name="relazioneAmbulatorio" type="String">
+			<hint name="max-length">2000</hint>
+		</field>
+	</model>
+	<model name="it.sincon.sanita.services.model.StrutturaSanitariaFiglia">
+		<field name="idStrutturaFiglia" type="long" />
+		<field name="tipoStruttura" type="String" />
+		<field name="denominazione" type="String" />
+		<field name="indirizzo" type="String" />
+		<field name="direttore" type="String" />
+		<field name="responsabileSanitario" type="String" />
+		<field name="telefono" type="String" />
+		<field name="email" type="String" />
+	</model>
+</model-hints>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom-sql>
+	<sql id="searchStrutturaSanitaria_withDistanceCompute">
+		<![CDATA[
+			SELECT 
+				pk, idstruttura, idtipostruttura, 
+				tipostruttura, tipologia, 
+				denominazione, descrizione, immagine,
+				indirizzo, telefono, fax, email, 
+				orari, 
+				locale, stato,
+				lat, lng, 
+				st_distance_sphere(st_geomfromtext('POINT(' || lng || ' ' || lat || ')'), st_geomfromtext('POINT(' || ? || ' ' || ? || ')')) / 1000 as distanza
+			FROM SANITAREST_StrutturaSanitaria
+			WHERE 1 = 1 
+		]]>
+	</sql>
+	<sql id="searchStrutturaSanitaria_withoutDistanceCompute">
+		<![CDATA[
+			SELECT 
+				pk, idstruttura, idtipostruttura, 
+				tipostruttura, tipologia, 
+				denominazione, descrizione, immagine,
+				indirizzo, telefono, fax, email, 
+				orari, 
+				locale, stato,
+				lat, lng, distanza
+			FROM SANITAREST_StrutturaSanitaria
+			WHERE 1 = 1 
+		]]>
+	</sql>
+	<sql id="searchStrutturaSanitaria_selectCount">
+		<![CDATA[
+			SELECT COUNT ( pk ) as search_SScount
+			FROM SANITAREST_StrutturaSanitaria
+			WHERE 1 = 1 
+		]]>
+	</sql>
+</custom-sql>

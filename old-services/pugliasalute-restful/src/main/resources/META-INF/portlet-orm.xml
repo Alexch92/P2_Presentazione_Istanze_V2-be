@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete/>
+		<persistence-unit-defaults>
+			<access>PROPERTY</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="it.sincon.sanita.services.model.impl.CategoriaStrutturaModelImpl">
+		<attributes>
+			<id name="idTipoStruttura" />
+			<basic name="denominazione" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="it.sincon.sanita.services.model.impl.CFG_CategorieAbilitateModelImpl">
+		<attributes>
+			<id name="titoloStruttura" />
+			<basic name="denominazione" />
+			<basic name="ordine" />
+			<basic name="className" />
+			<basic name="defaultRicerca" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="it.sincon.sanita.services.model.impl.NewsModelImpl">
+		<attributes>
+			<id name="pk" />
+			<basic name="idNews" />
+			<basic name="idAzienda" />
+			<basic name="titolo" />
+			<basic name="immagine" />
+			<basic name="descrizione" />
+			<basic name="dataPubblicazione" />
+			<basic name="autore" />
+			<basic name="locale" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="it.sincon.sanita.services.model.impl.StrutturaSanitariaModelImpl">
+		<attributes>
+			<id name="pk" />
+			<basic name="idStruttura" />
+			<basic name="groupId" />
+			<basic name="idTipoStruttura" />
+			<basic name="tipoStruttura" />
+			<basic name="tipologia" />
+			<basic name="denominazione" />
+			<basic name="immagine" />
+			<basic name="descrizione" />
+			<basic name="indirizzo" />
+			<basic name="lat" />
+			<basic name="lng" />
+			<basic name="distanza" />
+			<basic name="telefono" />
+			<basic name="email" />
+			<basic name="fax" />
+			<basic name="orari" />
+			<basic name="locale" />
+			<basic name="stato" />
+			<basic name="childrenEdottoOspedaleCollegato" />
+			<basic name="childrenEdottoAmbulatorio" />
+			<basic name="childrenEdottoUnitaOperativa" />
+			<basic name="childrenEdottoUnitaps" />
+			<basic name="relazioneAmbulatorio" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="it.sincon.sanita.services.model.impl.StrutturaSanitariaFigliaModelImpl">
+		<attributes>
+			<id name="idStrutturaFiglia" />
+			<basic name="tipoStruttura" />
+			<basic name="denominazione" />
+			<basic name="indirizzo" />
+			<basic name="direttore" />
+			<basic name="responsabileSanitario" />
+			<basic name="telefono" />
+			<basic name="email" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="it.sincon.sanita.services.model.impl.CategoriaStrutturaImpl" name="CategoriaStruttura">
+		<table name="SANITAREST_CategoriaStruttura" />
+		<attributes />
+	</entity>
+	<entity class="it.sincon.sanita.services.model.impl.CFG_CategorieAbilitateImpl" name="CFG_CategorieAbilitate">
+		<table name="SANITAREST_CFG_CategorieAbilitate" />
+		<attributes />
+	</entity>
+	<entity class="it.sincon.sanita.services.model.impl.NewsImpl" name="News">
+		<table name="SANITAREST_News" />
+		<attributes />
+	</entity>
+	<entity class="it.sincon.sanita.services.model.impl.StrutturaSanitariaImpl" name="StrutturaSanitaria">
+		<table name="SANITAREST_StrutturaSanitaria" />
+		<attributes />
+	</entity>
+	<entity class="it.sincon.sanita.services.model.impl.StrutturaSanitariaFigliaImpl" name="StrutturaSanitariaFiglia">
+		<table name="SANITAREST_StrutturaSanitariaFiglia" />
+		<attributes />
+	</entity>
+</entity-mappings>

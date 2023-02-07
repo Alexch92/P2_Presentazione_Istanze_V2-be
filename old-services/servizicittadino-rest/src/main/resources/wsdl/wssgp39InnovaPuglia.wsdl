@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://cup.sanita.puglia.it/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://cup.sanita.puglia.it/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+	<wsdl:types>
+		<xsd:schema attributeFormDefault="qualified"
+			elementFormDefault="qualified" targetNamespace="http://cup.sanita.puglia.it/"
+			xmlns:tns="http://cup.sanita.puglia.it/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:include schemaLocation="operatore.xsd" />
+			<xsd:include schemaLocation="paziente.xsd" />
+			<xsd:include schemaLocation="prescrizione.xsd" />
+			<xsd:complexType name="Errore">
+				<xsd:sequence>
+					<xsd:element name="codiceErrore" nillable="false" type="xsd:string" />
+					<xsd:element name="messaggioErrore" nillable="false"
+						type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="Vincolo">
+				<xsd:sequence>
+					<xsd:element name="proprieta" nillable="false" type="xsd:string" />
+					<xsd:element name="valore" nillable="false" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="Ente">
+				<xsd:sequence>
+					<xsd:element name="idEnte" nillable="false" type="xsd:string" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ListaPrescrizioni">
+				<xsd:sequence>
+					<xsd:element maxOccurs="unbounded" minOccurs="0"
+						name="prescrizione" nillable="false" type="tns:Prescrizione" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="RichiestaLogin">
+				<xsd:sequence>
+					<xsd:element name="operatore" nillable="false" type="tns:Operatore" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="RispostaLogin">
+				<xsd:sequence>
+					<xsd:element name="operatore" nillable="false" type="tns:Operatore" />
+					<xsd:element name="errore" nillable="false" type="tns:Errore" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="RichiestaPaziente">
+				<xsd:sequence>
+					<xsd:element name="operatore" nillable="false" type="tns:Operatore" />
+					<xsd:element name="paziente" nillable="false" type="tns:Paziente" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="RispostaPaziente">
+				<xsd:sequence>
+					<xsd:element name="paziente" nillable="false" type="tns:Paziente" />
+					<xsd:element name="errore" nillable="false" type="tns:Errore" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="RispostaSetPaziente">
+				<xsd:sequence>
+					<xsd:element name="errore" nillable="false" type="tns:Errore" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="RichiestaListaDisponibilita">
+				<xsd:sequence>
+					<xsd:element name="tipo" nillable="false" type="xsd:string" />
+					<xsd:element name="operatore" nillable="false" type="tns:Operatore" />
+					<xsd:element name="ente" nillable="false" type="tns:Ente" />
+					<xsd:element name="paziente" minOccurs="0" nillable="true"
+						type="tns:Paziente" />
+					<xsd:element name="listaPrescrizioni" nillable="false"
+						type="tns:ListaPrescrizioni" />
+					<xsd:element maxOccurs="unbounded" minOccurs="0" name="vincolo"
+						nillable="false" type="tns:Vincolo" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="RispostaListaDisponibilita">
+				<xsd:sequence>
+					<xsd:element name="listaAppuntamenti" nillable="false"
+						type="tns:ListaAppuntamenti" />
+					<xsd:element name="errore" nillable="false" type="tns:Errore" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="RichiestaPrenota">
+				<xsd:sequence>
+					<xsd:element name="operatore" nillable="false" type="tns:Operatore" />
+					<xsd:element name="ente" nillable="false" type="tns:Ente" />
+					<xsd:element name="paziente" nillable="false" type="tns:Paziente" />
+					<xsd:element name="listaPrescrizioni" nillable="false"
+						type="tns:ListaPrescrizioni" />
+					<xsd:element name="listaAppuntamenti" nillable="false"
+						type="tns:ListaAppuntamenti" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="RispostaPrenota">
+				<xsd:sequence>
+					<xsd:element name="paziente" nillable="false" type="tns:Paziente" />
+					<xsd:element name="listaPrescrizioni" nillable="false"
+						type="tns:ListaPrescrizioni" />
+					<xsd:element name="listaAppuntamenti" nillable="false"
+						type="tns:ListaAppuntamenti" />
+					<xsd:element name="errore" nillable="false" type="tns:Errore" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="RichiestaPromemoria">
+				<xsd:sequence>
+					<xsd:element name="operatore" nillable="false" type="tns:Operatore" />
+					<xsd:element name="ente" nillable="false" type="tns:Ente" />
+					<xsd:element name="prescrizione" nillable="false"
+						type="tns:Prescrizione" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="RispostaPromemoria">
+				<xsd:sequence>
+					<xsd:element name="prescrizione" nillable="false"
+						type="tns:Prescrizione" />
+					<xsd:element name="promemoria" nillable="false" type="xsd:string" />
+					<xsd:element name="errore" nillable="false" type="tns:Errore" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="RichiestaCancella">
+				<xsd:sequence>
+					<xsd:element name="operatore" nillable="false" type="tns:Operatore" />
+					<xsd:element name="ente" nillable="false" type="tns:Ente" />
+					<xsd:element name="appuntamento" nillable="false"
+						type="tns:Appuntamento" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="RispostaCancella">
+				<xsd:sequence>
+					<xsd:element name="appuntamento" nillable="false"
+						type="tns:Appuntamento" />
+					<xsd:element name="errore" nillable="false" type="tns:Errore" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="RichiestaPrescrizioni">
+				<xsd:sequence>
+					<xsd:element name="operatore" nillable="false" type="tns:Operatore" />
+					<xsd:element name="ente" nillable="false" type="tns:Ente" />
+					<xsd:element name="paziente" nillable="false" type="tns:Paziente" />
+					<xsd:element name="listaPrescrizioni" nillable="false"
+						type="tns:ListaPrescrizioni" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="RispostaPrescrizioni">
+				<xsd:sequence>
+					<xsd:element name="paziente" nillable="false" type="tns:Paziente" />
+					<xsd:element name="listaPrescrizioni" nillable="false"
+						type="tns:ListaPrescrizioni" />
+					<xsd:element name="errore" nillable="false" type="tns:Errore" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="RichiestaRegistrazione">
+				<xsd:sequence>
+					<xsd:element name="operatore" nillable="false" type="tns:Operatore" />
+					<xsd:element name="ente" nillable="false" type="tns:Ente" />
+					<xsd:element name="paziente" nillable="false" type="tns:Paziente" />
+					<xsd:element name="prescrizione" nillable="false"
+						type="tns:Prescrizione" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="RispostaRegistrazione">
+				<xsd:sequence>
+					<xsd:element name="paziente" nillable="false" type="tns:Paziente" />
+					<xsd:element name="prescrizione" nillable="false"
+						type="tns:Prescrizione" />
+					<xsd:element name="errore" nillable="false" type="tns:Errore" />
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="RichiestaCambiaStatoPrestazione">
+				<xsd:sequence>
+					<xsd:element name="operatore" type="tns:Operatore"></xsd:element>
+					<xsd:element name="ente" type="tns:Ente"></xsd:element>
+					<xsd:element name="prestazione" type="tns:Prestazione"></xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:complexType name="RispostaCambiaStatoPrestazione">
+				<xsd:sequence>
+					<xsd:element name="prestazione" type="tns:Prestazione"></xsd:element>
+					<xsd:element name="errore" type="tns:Errore"></xsd:element>
+				</xsd:sequence>
+			</xsd:complexType>
+
+			<xsd:element name="getLogin">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="richiestaLogin" type="tns:RichiestaLogin"
+							nillable="false"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="getLoginResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="rispostaLogin" type="tns:RispostaLogin"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="getPaziente">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="richiestaPaziente" type="tns:RichiestaPaziente"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="getPazienteResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="rispostaPaziente" type="tns:RispostaPaziente"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="setPaziente">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="richiestaSetPaziente" type="tns:RichiestaPaziente"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="setPazienteResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="rispostaSetPaziente" type="tns:RispostaSetPaziente"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="getListaDisponibilita">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="richiestaListaDisponibilita" type="tns:RichiestaListaDisponibilita">
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="getListaDisponibilitaResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="rispostaListaDisponibilita" type="tns:RispostaListaDisponibilita">
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="setPrenotaPrimaDisponibilita">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="richiestaListaDisponibilita" type="tns:RichiestaListaDisponibilita">
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="setPrenotaPrimaDisponibilitaResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="rispostaPrenota" type="tns:RispostaPrenota"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="setPrenota">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="richiestaPrenota" type="tns:RichiestaPrenota"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="setPrenotaResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="rispostaPrenota" type="tns:RispostaPrenota"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="getPromemoria">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="richiestaPromemoria" type="tns:RichiestaPromemoria"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="getPromemoriaResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="rispostaPromemoria" type="tns:RispostaPromemoria"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="setCancella">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="richiestaCancella" type="tns:RichiestaCancella">
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="setCancellaResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="rispostaCancella" type="tns:RispostaCancella">
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="getPrescrizioni">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="richiestaPrescrizioni" type="tns:RichiestaPrescrizioni">
+						</xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="getPrescrizioniResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="rispostaPrescrizioni" type="tns:RispostaPrescrizioni"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="setRegistrazione">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="richiestaRegistrazione" type="tns:RichiestaRegistrazione"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="setRegistrazioneResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="rispostaRegistrazione" type="tns:RispostaRegistrazione"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+
+			<xsd:element name="setCambiaStatoPrestazione">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="richiestaCambiaStatoPrestazione"
+							type="tns:RichiestaCambiaStatoPrestazione"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="setCambiaStatoPrestazioneResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="rispostaCambiaStatoPrestazione"
+							type="tns:RispostaCambiaStatoPrestazione"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+	</wsdl:types>
+
+	<wsdl:message name="RichiestaLogin">
+		<wsdl:part name="RichiestaLogin" element="tns:getLogin">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="RispostaLogin">
+		<wsdl:part name="RispostaLogin" element="tns:getLoginResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="RichiestaPaziente">
+		<wsdl:part name="RichiestaPaziente" element="tns:getPaziente">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="RispostaPaziente">
+		<wsdl:part name="RispostaPaziente" element="tns:getPazienteResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="RichiestaSetPaziente">
+		<wsdl:part name="RichiestaSetPaziente" element="tns:setPaziente">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="RispostaSetPaziente">
+		<wsdl:part name="RispostaSetPaziente" element="tns:setPazienteResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="RichiestaListaDisponibilita">
+		<wsdl:part name="RichiestaListaDisponibilita" element="tns:getListaDisponibilita">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="RispostaListaDisponibilita">
+		<wsdl:part name="RispostaListaDisponibilita" element="tns:getListaDisponibilitaResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="RichiestaPrenotaPrimaDisponibilita">
+		<wsdl:part name="RichiestaPrenotaPrimaDisponibilita"
+			element="tns:setPrenotaPrimaDisponibilita">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="RispostaPrenotaPrimaDisponibilita">
+		<wsdl:part name="RispostaPrenotaPrimaDisponibilita" element="tns:setPrenotaPrimaDisponibilitaResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="RichiestaPrenota">
+		<wsdl:part name="RichiestaPrenota" element="tns:setPrenota">
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="RispostaPrenota">
+		<wsdl:part name="RispostaPrenota" element="tns:setPrenotaResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="RichiestaPromemoria">
+		<wsdl:part name="RichiestaPromemoria" element="tns:getPromemoria">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="RispostaPromemoria">
+		<wsdl:part name="RispostaPromemoria" element="tns:getPromemoriaResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="RichiestaCancella">
+		<wsdl:part name="RichiestaCancella" element="tns:setCancella">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="RispostaCancella">
+		<wsdl:part name="RispostaCancella" element="tns:setCancellaResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="RichiestaPrescrizioni">
+		<wsdl:part name="RichiestaPrescrizioni" element="tns:getPrescrizioni">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="RispostaPrescrizioni">
+		<wsdl:part name="RispostaPrescrizioni" element="tns:getPrescrizioniResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="RichiestaRegistrazione">
+		<wsdl:part name="richiestaRegistrazione" element="tns:setRegistrazione">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="RispostaRegistrazione">
+		<wsdl:part name="RispostaRegistrazione" element="tns:setRegistrazioneResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="RichiestaCambiaStatoPrestazione">
+		<wsdl:part name="RichiestaCambiaStatoPrestazione" element="tns:setCambiaStatoPrestazione">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="RispostaCambiaStatoPrestazione">
+		<wsdl:part name="RispostaCambiaStatoPrestazione" element="tns:setCambiaStatoPrestazioneResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="servizi">
+
+		<wsdl:operation name="getLogin">
+			<wsdl:input name="RichiestaLogin" message="tns:RichiestaLogin">
+			</wsdl:input>
+			<wsdl:output name="RispostaLogin" message="tns:RispostaLogin">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getPaziente">
+			<wsdl:input name="RichiestaPaziente" message="tns:RichiestaPaziente">
+			</wsdl:input>
+			<wsdl:output name="RispostaPaziente" message="tns:RispostaPaziente">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="setPaziente">
+			<wsdl:input name="RichiestaSetPaziente" message="tns:RichiestaSetPaziente">
+			</wsdl:input>
+			<wsdl:output name="RispostaSetPaziente" message="tns:RispostaSetPaziente">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getListaDisponibilita">
+			<wsdl:input name="RichiestaListaDisponibilita" message="tns:RichiestaListaDisponibilita">
+			</wsdl:input>
+			<wsdl:output name="RispostaListaDisponibilita" message="tns:RispostaListaDisponibilita">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="setPrenota">
+			<wsdl:input name="RichiestaPrenota" message="tns:RichiestaPrenota">
+			</wsdl:input>
+			<wsdl:output name="RispostaPrenota" message="tns:RispostaPrenota">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="setPrenotaPrimaDisponibilita">
+			<wsdl:input name="RichiestaPrenotaPrimaDisponibilita"
+				message="tns:RichiestaPrenotaPrimaDisponibilita">
+			</wsdl:input>
+			<wsdl:output name="RispostaPrenotaPrimaDisponibilita"
+				message="tns:RispostaPrenotaPrimaDisponibilita">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getPromemoria">
+			<wsdl:input name="RichiestaPromemoria" message="tns:RichiestaPromemoria">
+			</wsdl:input>
+			<wsdl:output name="RispostaPromemoria" message="tns:RispostaPromemoria">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="setCancella">
+			<wsdl:input name="RichiestaCancella" message="tns:RichiestaCancella">
+			</wsdl:input>
+			<wsdl:output name="RispostaCancella" message="tns:RispostaCancella">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getPrescrizioni">
+			<wsdl:input name="RichiestaPrescrizioni" message="tns:RichiestaPrescrizioni">
+			</wsdl:input>
+			<wsdl:output name="RispostaPrescrizioni" message="tns:RispostaPrescrizioni">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="setRegistrazione">
+			<wsdl:input name="RichiestaRegistrazione" message="tns:RichiestaRegistrazione">
+			</wsdl:input>
+			<wsdl:output name="RispostaRegistrazione" message="tns:RispostaRegistrazione">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="setCambiaStatoPrestazione">
+			<wsdl:input name="RichiestaCambiaStatoPrestazione"
+				message="tns:RichiestaCambiaStatoPrestazione" />
+			<wsdl:output name="RispostaCambiaStatoPrestazione"
+				message="tns:RispostaCambiaStatoPrestazione" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+
+	<wsdl:binding name="serviziBinding" type="tns:servizi">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="getLogin">
+			<soap:operation soapAction="" />
+			<wsdl:input name="RichiestaLogin">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="RispostaLogin">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getPaziente">
+			<soap:operation soapAction="" />
+			<wsdl:input name="RichiestaPaziente">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="RispostaPaziente">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="setPaziente">
+			<soap:operation soapAction="" />
+			<wsdl:input name="RichiestaSetPaziente">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="RispostaSetPaziente">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getListaDisponibilita">
+			<soap:operation soapAction="" />
+			<wsdl:input name="RichiestaListaDisponibilita">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="RispostaListaDisponibilita">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="setPrenota">
+			<soap:operation soapAction="" />
+			<wsdl:input name="RichiestaPrenota">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="RispostaPrenota">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="setPrenotaPrimaDisponibilita">
+			<soap:operation soapAction="" />
+			<wsdl:input name="RichiestaPrenotaPrimaDisponibilita">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="RispostaPrenotaPrimaDisponibilita">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getPromemoria">
+			<soap:operation soapAction="" />
+			<wsdl:input name="RichiestaPromemoria">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="RispostaPromemoria">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="setCancella">
+			<soap:operation soapAction="" />
+			<wsdl:input name="RichiestaCancella">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="RispostaCancella">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getPrescrizioni">
+			<soap:operation soapAction="" />
+			<wsdl:input name="RichiestaPrescrizioni">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="RispostaPrescrizioni">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="setRegistrazione">
+			<soap:operation soapAction="" />
+			<wsdl:input name="RichiestaRegistrazione">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="RispostaRegistrazione">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="setCambiaStatoPrestazione">
+			<soap:operation soapAction="" />
+			<wsdl:input name="RichiestaCambiaStatoPrestazione">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="RispostaCambiaStatoPrestazione">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="wssgp">
+		<wsdl:port name="wssgp" binding="tns:serviziBinding">
+			<soap:address location="http://localhost:8080/wssgp/wssgp" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

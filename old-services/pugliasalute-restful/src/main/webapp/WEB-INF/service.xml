@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+<service-builder package-path="it.sincon.sanita.services" auto-namespace-tables="true">
+	<author>Sincon</author>
+	<namespace>SANITAREST</namespace>
+	<entity name="CFG_CategorieAbilitate" local-service="true" remote-service="false" json-enabled="false">
+		<column name="titoloStruttura" type="String" primary="true"/>
+		<column name="denominazione" type="String" />
+		<column name="ordine" type="int"/>
+		<column name="className" type="String"/>
+        <column name="defaultRicerca" type="boolean" json-enabled="false"></column>
+		<order>
+            <order-column name="ordine" order-by="asc"></order-column>
+        </order>
+		<finder name="ClassName" return-type="Collection">
+            <finder-column name="className"></finder-column>
+        </finder>
+		<finder name="ClassNameAndDefaultRicerca" return-type="Collection">
+            <finder-column name="className"></finder-column>
+            <finder-column name="defaultRicerca"></finder-column>
+        </finder>
+	</entity>
+	<entity name="CategoriaStruttura" local-service="true" remote-service="true" >
+		<column name="idTipoStruttura" type="String" primary="true" />
+		<column name="denominazione" type="String" />
+	</entity>
+	<entity name="News" local-service="true" remote-service="true" >
+		<column name="pk" type="long" primary="true" json-enabled="false" id-type="increment"/>
+		<column name="idNews" type="long" />
+		<column name="idAzienda" type="String" json-enabled="false"/>
+		<column name="titolo" type="String" />
+		<column name="immagine" type="String" />
+		<column name="descrizione" type="String" />
+		<column name="dataPubblicazione" type="long" />
+		<column name="autore" type="String" />
+		<column name="locale" type="String" json-enabled="false"/>
+	</entity>
+	<entity name="StrutturaSanitaria" local-service="true" remote-service="true" >
+		<column name="pk" type="long" primary="true" json-enabled="false" id-type="increment"/>
+		<column name="idStruttura" type="long" />
+		<column name="groupId" type="long" json-enabled="false" />
+		<column name="idTipoStruttura" type="String" json-enabled="false"/>
+		<column name="tipoStruttura" type="String" />
+		<column name="tipologia" type="String" json-enabled="false"/>
+		<column name="denominazione" type="String" />
+		<column name="immagine" type="String" />
+		<column name="descrizione" type="String" />
+		<column name="indirizzo" type="String" />
+		<column name="lat" type="double" />
+		<column name="lng" type="double" />
+		<column name="distanza" type="double" />
+		<column name="telefono" type="String" />
+		<column name="email" type="String" />
+		<column name="fax" type="String" json-enabled="false"/>
+		<column name="orari" type="String" />
+		<column name="locale" type="String" json-enabled="false"/>
+        <column name="stato" type="int" json-enabled="false"/>
+        <column name="childrenEdottoOspedaleCollegato" type="String" json-enabled="false"/>
+        <column name="childrenEdottoAmbulatorio" type="String" json-enabled="false"/>
+        <column name="childrenEdottoUnitaOperativa" type="String" json-enabled="false"/>
+        <column name="childrenEdottoUnitaps" type="String" json-enabled="false"/>
+        <column name="relazioneAmbulatorio" type="String" json-enabled="false"/>
+        <finder name="IdStrutturaAndLocale" return-type="StrutturaSanitaria">
+            <finder-column name="idStruttura"></finder-column>
+			<finder-column name="locale"></finder-column>
+        </finder>
+	</entity>
+	<entity name="StrutturaSanitariaFiglia" local-service="true" remote-service="true" >
+		<column name="idStrutturaFiglia" type="long" primary="true" />
+		<column name="tipoStruttura" type="String" />
+		<column name="denominazione" type="String" />
+		<column name="indirizzo" type="String" />
+		<column name="direttore" type="String" />
+		<column name="responsabileSanitario" type="String" />
+		<column name="telefono" type="String" />
+		<column name="email" type="String" />
+	</entity>
+</service-builder>

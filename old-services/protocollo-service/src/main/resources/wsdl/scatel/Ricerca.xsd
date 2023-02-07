@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://protocolloWS.egov.rupar.puglia.it/protocollo" targetNamespace="http://protocolloWS.egov.rupar.puglia.it/protocollo" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="Segnatura.xsd"/>
+	<xs:include schemaLocation="Credenziali.xsd"/>
+	<xs:element name="ParametriRicercaProtocollo">
+		<xs:annotation>
+			<xs:documentation>Elemento Contenente i parametri del WS di ricerca protocollo</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ns1:CredenzialiUtente"/>
+				<xs:element ref="ns1:NumeroRegistrazione" minOccurs="0"/>
+				<xs:element ref="ns1:Oggetto" minOccurs="0"/>
+				<xs:element name="DataProtocolloDa" type="xs:string" minOccurs="0"/>
+				<xs:element name="DataProtocolloA" type="xs:string" minOccurs="0"/>
+				<xs:element name="InMittente" type="xs:string" minOccurs="0"/>
+				<xs:element name="InDestinatario" type="xs:string" minOccurs="0"/>
+				<xs:element ref="ns1:InOut" minOccurs="0"/>
+				<xs:element ref="ns1:UtenteOperazione" minOccurs="0"/>
+				<xs:element name="DataArrivoDa" type="xs:string" minOccurs="0"/>
+				<xs:element name="DataArrivoA" type="xs:string" minOccurs="0"/>
+				<xs:element name="NumeroArrivo" type="xs:string" minOccurs="0"/>
+				<xs:element name="InProtocolloMittente" type="xs:string" minOccurs="0"/>
+				<xs:element name="InClassifica" type="xs:string" minOccurs="0"/>
+				<xs:element ref="ns1:Annullato" minOccurs="0"/>
+				<xs:element name="InProtocolloEmergenza" type="xs:string" minOccurs="0"/>
+				<xs:element ref="ns1:DataProtEmergenza" minOccurs="0"/>
+				<xs:element name="AmministrazioneRiferimento" type="xs:string" minOccurs="0"/>
+				<xs:element name="ProtocolloRiferimento" type="xs:string" minOccurs="0"/>
+				<xs:element name="AOORiferimento" type="xs:string" minOccurs="0"/>
+				<xs:element name="DataRiferimento" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ParametriRichiestaProtocollo">
+		<xs:annotation>
+			<xs:documentation>Elemento Contenente i parametri del WS per la ricerca di un protocollo </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ns1:CredenzialiUtente"/>
+				<xs:element ref="ns1:Identificatore"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ParametriRichiestaDocumentiProtocollo">
+		<xs:annotation>
+			<xs:documentation>Elemento Contenente i parametri del WS per il recupero dei documenti protocollati </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ns1:CredenzialiUtente"/>
+				<xs:element ref="ns1:Identificatore"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RispostaRicercaProtocollo">
+		<xs:annotation>
+			<xs:documentation>Elemento Contenente la risposta alla ricerca protocollo</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ns1:NumeroElementiTrovati"/>
+				<xs:element ref="ns1:MatchingProtocollo" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NumeroElementiTrovati" type="xs:int"/>
+	<xs:element name="Corrispondente" type="xs:string"/>
+	<xs:element name="Annullato" type="xs:boolean"/>
+	<xs:element name="MatchingProtocollo">
+		<xs:annotation>
+			<xs:documentation>Elemento Contenente il singolo protocollo che soddisfa i requisiti di ricerca.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ns1:InOut"/>
+				<xs:element ref="ns1:Identificatore"/>
+				<xs:element ref="ns1:Oggetto"/>
+				<xs:element ref="ns1:Corrispondente"/>
+				<xs:element ref="ns1:Annullato" minOccurs="0"/>
+				<xs:element ref="ns1:DataArrivo" minOccurs="0"/>
+				<xs:element name="RifProtocolloMittente" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RispostaDettaglioProtocollo">
+		<xs:annotation>
+			<xs:documentation>Elemento Contenente la risposta alla ricerca protocollo</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Trovato" type="xs:boolean"/>
+				<xs:element ref="ns1:Segnatura" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RispostaPrelievoDocumentiProtocollati">
+		<xs:annotation>
+			<xs:documentation>Elemento Contenente i documenti del protocollo ricercato</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Trovato" type="xs:boolean"/>
+				<xs:element name="NumeroDocCartacei" type="xs:int"/>
+				<xs:element name="NumeroDocTelematici" type="xs:int"/>
+				<xs:element name="NumeroDocElettronici" type="xs:int"/>
+				<xs:element ref="ns1:MatchingDocumenti" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="MatchingDocumenti">
+		<xs:annotation>
+			<xs:documentation>Elemento Contenente il singolo Documento del protocollo ricercato.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="FileName" type="xs:string" minOccurs="0"/>
+				<xs:element name="DocPrincipale" type="xs:boolean"/>
+				<xs:element name="FileContent" type="xs:base64Binary"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,145 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>it.sincon</groupId>
+		<artifactId>redditoenergetico-services</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<groupId>it.sincon</groupId>
+	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>protocollo-service</artifactId>
+	<name>Protocollo Service Layer</name>
+
+	<properties>
+		<!-- Apache CXF -->
+		<cxf.version>2.4.2</cxf.version>
+
+		<!-- Generic properties -->
+		<java.version>1.6</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<!-- Spring -->
+		<!-- <spring-framework.version>3.0.6.RELEASE</spring-framework.version> -->
+
+		<!-- Logging -->
+		<slf4j.version>1.5.11</slf4j.version>
+
+		<!-- Test -->
+		<junit.version>4.11</junit.version>
+		<skipTests>true</skipTests>
+	</properties>
+
+	<dependencies>
+		<!-- Apache CXF -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring-framework.version}</version>
+		</dependency>
+
+		<!-- Logging with SLF4J -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- Test Artifacts -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring-framework.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.axis</groupId>
+			<artifactId>axis</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.axis</groupId>
+			<artifactId>axis-jaxrpc</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-discovery</groupId>
+			<artifactId>commons-discovery</artifactId>
+			<version>0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>wss4j</groupId>
+			<artifactId>wss4j</artifactId>
+			<version>1.5.0</version>
+		</dependency>
+		
+		<dependency>
+	       <groupId>com.google.code.gson</groupId>
+	       <artifactId>gson</artifactId>
+	       <version>2.3.1</version>
+	   	</dependency>
+
+	</dependencies>
+
+	<build>
+		<pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-codegen-plugin</artifactId>
+				<version>2.4.2</version>
+				<executions>
+					<execution>
+						<id>generate-sources</id>
+						<phase>generate-sources</phase>
+						<configuration>
+							<sourceRoot>${basedir}/src/main/java/</sourceRoot>
+							<wsdlOptions>
+								<wsdlOption>
+									<wsdl>${basedir}/src/main/resources/wsdl/adoc/ProtocolloWebServiceAdoc.wsdl</wsdl>
+									<extraargs>
+										<extraarg>-fe</extraarg>
+										<extraarg>jaxws21</extraarg>
+										<extraarg>-verbose</extraarg>
+										<extraarg>-p</extraarg>
+										<extraarg>http://impl.server.ws.protocollo.linksmt.it/=it.sincon.gepred.protocollo.adoc.impl</extraarg>
+										<extraarg>-p</extraarg>
+										<extraarg>http://server.ws.protocollo.linksmt.it/=it.sincon.gepred.protocollo.adoc.impl</extraarg>
+										<extraarg>-p</extraarg>
+										<extraarg>http://protocollo.linksmt.it/RichiestaSOAP=it.sincon.gepred.protocollo.adoc.bean</extraarg>
+									</extraargs>
+								</wsdlOption>
+							</wsdlOptions>
+						</configuration>
+						<goals>
+							<goal>wsdl2java</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		</pluginManagement>
+	</build>
+	
+</project>

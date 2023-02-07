@@ -1,0 +1,905 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="AperteWorkflowProcessServiceImplService" targetNamespace="http://service.aperteworkflow.org/" xmlns:ns1="org.aperteworkflow.service.fault" xmlns:ns2="http://schemas.xmlsoap.org/wsdl/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://service.aperteworkflow.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://service.aperteworkflow.org/" xmlns:tns="http://service.aperteworkflow.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="adminCancelProcessInstance" type="tns:adminCancelProcessInstance" />
+<xs:element name="adminCancelProcessInstanceResponse" type="tns:adminCancelProcessInstanceResponse" />
+<xs:element name="assignTaskToUser" type="tns:assignTaskToUser" />
+<xs:element name="assignTaskToUserResponse" type="tns:assignTaskToUserResponse" />
+<xs:element name="createProcessInstance" type="tns:createProcessInstance" />
+<xs:element name="createProcessInstanceResponse" type="tns:createProcessInstanceResponse" />
+<xs:element name="findProcessTasks" type="tns:findProcessTasks" />
+<xs:element name="findProcessTasksResponse" type="tns:findProcessTasksResponse" />
+<xs:element name="findUserTasksPaging" type="tns:findUserTasksPaging" />
+<xs:element name="findUserTasksPagingResponse" type="tns:findUserTasksPagingResponse" />
+<xs:element name="getAllTasks" type="tns:getAllTasks" />
+<xs:element name="getAllTasksResponse" type="tns:getAllTasksResponse" />
+<xs:element name="getAvalivableActionForProcess" type="tns:getAvalivableActionForProcess" />
+<xs:element name="getAvalivableActionForProcessResponse" type="tns:getAvalivableActionForProcessResponse" />
+<xs:element name="getOutgoingTransitionDestinationNames" type="tns:getOutgoingTransitionDestinationNames" />
+<xs:element name="getOutgoingTransitionDestinationNamesResponse" type="tns:getOutgoingTransitionDestinationNamesResponse" />
+<xs:element name="getOutgoingTransitionNamesByTaskId" type="tns:getOutgoingTransitionNamesByTaskId" />
+<xs:element name="getOutgoingTransitionNamesByTaskIdResponse" type="tns:getOutgoingTransitionNamesByTaskIdResponse" />
+<xs:element name="getProcessHistory" type="tns:getProcessHistory" />
+<xs:element name="getProcessHistoryResponse" type="tns:getProcessHistoryResponse" />
+<xs:element name="getTaskData" type="tns:getTaskData" />
+<xs:element name="getTaskDataResponse" type="tns:getTaskDataResponse" />
+<xs:element name="isProcessOwnedByUser" type="tns:isProcessOwnedByUser" />
+<xs:element name="isProcessOwnedByUserResponse" type="tns:isProcessOwnedByUserResponse" />
+<xs:element name="isProcessRunning" type="tns:isProcessRunning" />
+<xs:element name="isProcessRunningResponse" type="tns:isProcessRunningResponse" />
+<xs:element name="performAction" type="tns:performAction" />
+<xs:element name="performActionResponse" type="tns:performActionResponse" />
+<xs:element name="startProcessInstance" type="tns:startProcessInstance" />
+<xs:element name="startProcessInstanceResponse" type="tns:startProcessInstanceResponse" />
+<xs:complexType name="getAvalivableActionForProcess">
+<xs:sequence>
+<xs:element minOccurs="0" name="internalId" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAvalivableActionForProcessResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:processStateAction" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="processStateAction">
+<xs:complexContent>
+<xs:extension base="tns:abstractPersistentEntity">
+<xs:sequence>
+<xs:element minOccurs="0" name="actionType" type="xs:string" />
+<xs:element minOccurs="0" name="assignProcessStatus" type="xs:string" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="attributes" nillable="true" type="tns:processStateActionAttribute" />
+<xs:element minOccurs="0" name="autohide" type="xs:boolean" />
+<xs:element minOccurs="0" name="bpmName" type="xs:string" />
+<xs:element minOccurs="0" name="buttonName" type="xs:string" />
+<xs:element minOccurs="0" name="description" type="xs:string" />
+<xs:element minOccurs="0" name="label" type="xs:string" />
+<xs:element minOccurs="0" name="markProcessImportant" type="xs:boolean" />
+<xs:element minOccurs="0" name="notification" type="xs:string" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="permissions" nillable="true" type="tns:processStateActionPermission" />
+<xs:element minOccurs="0" name="priority" type="xs:int" />
+<xs:element minOccurs="0" name="question" type="xs:string" />
+<xs:element minOccurs="0" name="skipSaving" type="xs:boolean" />
+<xs:element minOccurs="0" name="title" type="xs:string" />
+<xs:element minOccurs="0" name="url" type="xs:string" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType abstract="true" name="abstractPersistentEntity">
+<xs:sequence>
+<xs:element minOccurs="0" name="id" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="processStateActionAttribute">
+<xs:complexContent>
+<xs:extension base="tns:abstractPersistentEntity">
+<xs:sequence>
+<xs:element minOccurs="0" name="name" type="xs:string" />
+<xs:element minOccurs="0" name="value" type="xs:string" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="processStateActionPermission">
+<xs:complexContent>
+<xs:extension base="tns:abstractPermission">
+<xs:sequence />
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType abstract="true" name="abstractPermission">
+<xs:complexContent>
+<xs:extension base="tns:abstractPersistentEntity">
+<xs:sequence>
+<xs:element minOccurs="0" name="privilegeName" type="xs:string" />
+<xs:element minOccurs="0" name="roleName" type="xs:string" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="isProcessRunning">
+<xs:sequence>
+<xs:element minOccurs="0" name="internalId" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="isProcessRunningResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findProcessTasks">
+<xs:sequence>
+<xs:element minOccurs="0" name="internalId" type="xs:string" />
+<xs:element minOccurs="0" name="userLogin" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findProcessTasksResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:bpmTask" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="bpmTask">
+<xs:sequence>
+<xs:element minOccurs="0" name="assignee" type="xs:string" />
+<xs:element minOccurs="0" name="createDate" type="xs:dateTime" />
+<xs:element minOccurs="0" name="executionId" type="xs:string" />
+<xs:element minOccurs="0" name="finishDate" type="xs:dateTime" />
+<xs:element name="finished" type="xs:boolean" />
+<xs:element minOccurs="0" name="internalTaskId" type="xs:string" />
+<xs:element minOccurs="0" name="owner" type="tns:userData" />
+<xs:element minOccurs="0" name="processInstance" type="tns:processInstance" />
+<xs:element minOccurs="0" name="taskName" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="userData">
+<xs:complexContent>
+<xs:extension base="tns:userAttributesSupport">
+<xs:sequence>
+<xs:element minOccurs="0" name="companyId" type="xs:long" />
+<xs:element minOccurs="0" name="email" type="xs:string" />
+<xs:element minOccurs="0" name="firstName" type="xs:string" />
+<xs:element minOccurs="0" name="jobTitle" type="xs:string" />
+<xs:element minOccurs="0" name="lastName" type="xs:string" />
+<xs:element minOccurs="0" name="liferayUserId" type="xs:long" />
+<xs:element minOccurs="0" name="login" type="xs:string" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="orphans" nillable="true" type="tns:userAttribute" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="roleNames" nillable="true" type="xs:string" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="roles" nillable="true" type="tns:userRole" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType abstract="true" name="userAttributesSupport">
+<xs:complexContent>
+<xs:extension base="tns:abstractPersistentEntity">
+<xs:sequence />
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="userAttribute">
+<xs:complexContent>
+<xs:extension base="tns:userAttributesSupport">
+<xs:sequence>
+<xs:element minOccurs="0" name="key" type="xs:string" />
+<xs:element minOccurs="0" name="parent" type="tns:userAttribute" />
+<xs:element minOccurs="0" name="value" type="xs:string" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="userRole">
+<xs:complexContent>
+<xs:extension base="tns:abstractPersistentEntity">
+<xs:sequence>
+<xs:element minOccurs="0" name="description" type="xs:string" />
+<xs:element minOccurs="0" name="name" type="xs:string" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="processInstance">
+<xs:complexContent>
+<xs:extension base="tns:abstractPersistentEntity">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="activeTasks" nillable="true" type="tns:bpmTask" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="assignees" nillable="true" type="xs:string" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="children" nillable="true" type="tns:processInstance" />
+<xs:element minOccurs="0" name="createDate" type="xs:dateTime" />
+<xs:element minOccurs="0" name="creator" type="tns:userData" />
+<xs:element minOccurs="0" name="definition" type="tns:processDefinitionConfig" />
+<xs:element minOccurs="0" name="definitionName" type="xs:string" />
+<xs:element minOccurs="0" name="description" type="xs:string" />
+<xs:element minOccurs="0" name="externalKey" type="xs:string" />
+<xs:element minOccurs="0" name="internalId" type="xs:string" />
+<xs:element minOccurs="0" name="keyword" type="xs:string" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="owners" nillable="true" type="xs:string" />
+<xs:element minOccurs="0" name="parent" type="tns:processInstance" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="processAttributes" nillable="true" type="tns:processInstanceAttribute" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="processLogs" nillable="true" type="tns:processInstanceLog" />
+<xs:element minOccurs="0" name="running" type="xs:boolean" />
+<xs:element minOccurs="0" name="state" type="xs:string" />
+<xs:element minOccurs="0" name="status" type="tns:processStatus" />
+<xs:element minOccurs="0" name="taskId" type="xs:string" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="taskQueues" nillable="true" type="xs:string" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="processDefinitionConfig">
+<xs:complexContent>
+<xs:extension base="tns:abstractPersistentEntity">
+<xs:sequence>
+<xs:element minOccurs="0" name="bpmDefinitionKey" type="xs:string" />
+<xs:element minOccurs="0" name="comment" type="xs:string" />
+<xs:element minOccurs="0" name="createDate" type="xs:dateTime" />
+<xs:element minOccurs="0" name="creator" type="tns:userData" />
+<xs:element minOccurs="0" name="description" type="xs:string" />
+<xs:element minOccurs="0" name="enabled" type="xs:boolean" />
+<xs:element minOccurs="0" name="latest" type="xs:boolean" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="permissions" nillable="true" type="tns:processDefinitionPermission" />
+<xs:element minOccurs="0" name="processLogo" type="xs:base64Binary" />
+<xs:element minOccurs="0" name="processName" type="xs:string" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="states" nillable="true" type="tns:processStateConfiguration" />
+<xs:element minOccurs="0" name="taskItemClass" type="xs:string" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="processDefinitionPermission">
+<xs:complexContent>
+<xs:extension base="tns:abstractPermission">
+<xs:sequence />
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="processStateConfiguration">
+<xs:complexContent>
+<xs:extension base="tns:abstractPersistentEntity">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="actions" nillable="true" type="tns:processStateAction" />
+<xs:element minOccurs="0" name="commentary" type="xs:string" />
+<xs:element minOccurs="0" name="description" type="xs:string" />
+<xs:element minOccurs="0" name="enableManualSave" type="xs:boolean" />
+<xs:element minOccurs="0" name="name" type="xs:string" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="permissions" nillable="true" type="tns:processStatePermission" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="widgets" nillable="true" type="tns:processStateWidget" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="processStatePermission">
+<xs:complexContent>
+<xs:extension base="tns:abstractPermission">
+<xs:sequence />
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="processStateWidget">
+<xs:complexContent>
+<xs:extension base="tns:abstractPersistentEntity">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="attributes" nillable="true" type="tns:processStateWidgetAttribute" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="children" nillable="true" type="tns:processStateWidget" />
+<xs:element minOccurs="0" name="className" type="xs:string" />
+<xs:element minOccurs="0" name="generateFromCollection" type="xs:string" />
+<xs:element minOccurs="0" name="generatorKey" type="xs:string" />
+<xs:element minOccurs="0" name="name" type="xs:string" />
+<xs:element minOccurs="0" name="optional" type="xs:boolean" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="permissions" nillable="true" type="tns:processStateWidgetPermission" />
+<xs:element minOccurs="0" name="priority" type="xs:int" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="processStateWidgetAttribute">
+<xs:complexContent>
+<xs:extension base="tns:abstractPersistentEntity">
+<xs:sequence>
+<xs:element minOccurs="0" name="name" type="xs:string" />
+<xs:element minOccurs="0" name="value" type="xs:string" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="processStateWidgetPermission">
+<xs:complexContent>
+<xs:extension base="tns:abstractPermission">
+<xs:sequence />
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="processInstanceAttribute">
+<xs:complexContent>
+<xs:extension base="tns:abstractPersistentEntity">
+<xs:sequence>
+<xs:element minOccurs="0" name="key" type="xs:string" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="processInstanceLog">
+<xs:complexContent>
+<xs:extension base="tns:abstractPersistentEntity">
+<xs:sequence>
+<xs:element minOccurs="0" name="additionalInfo" type="xs:string" />
+<xs:element minOccurs="0" name="entryDate" type="xs:dateTime" />
+<xs:element minOccurs="0" name="eventI18NKey" type="xs:string" />
+<xs:element minOccurs="0" name="executionId" type="xs:string" />
+<xs:element minOccurs="0" name="logType" type="xs:string" />
+<xs:element minOccurs="0" name="logValue" type="xs:string" />
+<xs:element minOccurs="0" name="state" type="tns:processStateConfiguration" />
+<xs:element minOccurs="0" name="user" type="tns:userData" />
+<xs:element minOccurs="0" name="userSubstitute" type="tns:userData" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="getOutgoingTransitionDestinationNames">
+<xs:sequence>
+<xs:element minOccurs="0" name="executionId" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getOutgoingTransitionDestinationNamesResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="assignTaskToUser">
+<xs:sequence>
+<xs:element minOccurs="0" name="taskId" type="xs:string" />
+<xs:element minOccurs="0" name="userLogin" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="assignTaskToUserResponse">
+<xs:sequence />
+</xs:complexType>
+<xs:complexType name="createProcessInstance">
+<xs:sequence>
+<xs:element minOccurs="0" name="config" type="tns:processDefinitionConfig" />
+<xs:element minOccurs="0" name="externalKey" type="xs:string" />
+<xs:element minOccurs="0" name="user" type="tns:userData" />
+<xs:element minOccurs="0" name="description" type="xs:string" />
+<xs:element minOccurs="0" name="keyword" type="xs:string" />
+<xs:element minOccurs="0" name="source" type="xs:string" />
+<xs:element minOccurs="0" name="internalId" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="createProcessInstanceResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:processInstance" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getOutgoingTransitionNamesByTaskId">
+<xs:sequence>
+<xs:element minOccurs="0" name="taskId" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getOutgoingTransitionNamesByTaskIdResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getProcessHistory">
+<xs:sequence>
+<xs:element minOccurs="0" name="internalId" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getProcessHistoryResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:bpmTask" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="isProcessOwnedByUser">
+<xs:sequence>
+<xs:element minOccurs="0" name="internalId" type="xs:string" />
+<xs:element minOccurs="0" name="userLogin" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="isProcessOwnedByUserResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="performAction">
+<xs:sequence>
+<xs:element minOccurs="0" name="procesInstanceInternalId" type="xs:string" />
+<xs:element minOccurs="0" name="actionName" type="xs:string" />
+<xs:element minOccurs="0" name="bpmTaskName" type="xs:string" />
+<xs:element minOccurs="0" name="userLogin" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="performActionResponse">
+<xs:sequence />
+</xs:complexType>
+<xs:complexType name="getTaskData">
+<xs:sequence>
+<xs:element minOccurs="0" name="internalId" type="xs:string" />
+<xs:element minOccurs="0" name="taskName" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getTaskDataResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:bpmTask" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findUserTasksPaging">
+<xs:sequence>
+<xs:element minOccurs="0" name="offset" type="xs:int" />
+<xs:element minOccurs="0" name="limit" type="xs:int" />
+<xs:element minOccurs="0" name="userLogin" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findUserTasksPagingResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:bpmTask" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAllTasks">
+<xs:sequence>
+<xs:element minOccurs="0" name="user" type="tns:userData" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAllTasksResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:bpmTask" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="adminCancelProcessInstance">
+<xs:sequence>
+<xs:element minOccurs="0" name="processInstance" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="adminCancelProcessInstanceResponse">
+<xs:sequence />
+</xs:complexType>
+<xs:complexType name="startProcessInstance">
+<xs:sequence>
+<xs:element minOccurs="0" name="bpmnkey" type="xs:string" />
+<xs:element minOccurs="0" name="userLogin" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="startProcessInstanceResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:processInstance" />
+</xs:sequence>
+</xs:complexType>
+<xs:simpleType name="processStatus">
+<xs:restriction base="xs:string">
+<xs:enumeration value="NEW" />
+<xs:enumeration value="RUNNING" />
+<xs:enumeration value="CANCELLED" />
+<xs:enumeration value="FINISHED" />
+<xs:enumeration value="UNKNOWN" />
+</xs:restriction>
+</xs:simpleType>
+<xs:element name="AperteWsIllegalArgumentException" type="tns:AperteWsIllegalArgumentException" />
+<xs:complexType name="AperteWsIllegalArgumentException">
+<xs:sequence />
+</xs:complexType>
+</xs:schema>
+<xsd:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="org.aperteworkflow.service.fault" xmlns:tns="org.aperteworkflow.service.fault" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsd:element name="faultBean" type="tns:faultBean" />
+<xsd:complexType name="faultBean">
+<xsd:sequence />
+</xsd:complexType>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="createProcessInstance">
+    <wsdl:part element="tns:createProcessInstance" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAvalivableActionForProcess">
+    <wsdl:part element="tns:getAvalivableActionForProcess" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAvalivableActionForProcessResponse">
+    <wsdl:part element="tns:getAvalivableActionForProcessResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOutgoingTransitionDestinationNames">
+    <wsdl:part element="tns:getOutgoingTransitionDestinationNames" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProcessHistoryResponse">
+    <wsdl:part element="tns:getProcessHistoryResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isProcessRunningResponse">
+    <wsdl:part element="tns:isProcessRunningResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AperteWsWrongArgumentException">
+    <wsdl:part element="ns1:faultBean" name="AperteWsWrongArgumentException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isProcessRunning">
+    <wsdl:part element="tns:isProcessRunning" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="performAction">
+    <wsdl:part element="tns:performAction" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOutgoingTransitionNamesByTaskId">
+    <wsdl:part element="tns:getOutgoingTransitionNamesByTaskId" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findProcessTasksResponse">
+    <wsdl:part element="tns:findProcessTasksResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findProcessTasks">
+    <wsdl:part element="tns:findProcessTasks" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllTasksResponse">
+    <wsdl:part element="tns:getAllTasksResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProcessHistory">
+    <wsdl:part element="tns:getProcessHistory" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTaskDataResponse">
+    <wsdl:part element="tns:getTaskDataResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="adminCancelProcessInstanceResponse">
+    <wsdl:part element="tns:adminCancelProcessInstanceResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="assignTaskToUserResponse">
+    <wsdl:part element="tns:assignTaskToUserResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="assignTaskToUser">
+    <wsdl:part element="tns:assignTaskToUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="startProcessInstance">
+    <wsdl:part element="tns:startProcessInstance" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllTasks">
+    <wsdl:part element="tns:getAllTasks" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="performActionResponse">
+    <wsdl:part element="tns:performActionResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOutgoingTransitionDestinationNamesResponse">
+    <wsdl:part element="tns:getOutgoingTransitionDestinationNamesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getTaskData">
+    <wsdl:part element="tns:getTaskData" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isProcessOwnedByUser">
+    <wsdl:part element="tns:isProcessOwnedByUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findUserTasksPaging">
+    <wsdl:part element="tns:findUserTasksPaging" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="adminCancelProcessInstance">
+    <wsdl:part element="tns:adminCancelProcessInstance" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createProcessInstanceResponse">
+    <wsdl:part element="tns:createProcessInstanceResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AperteWsIllegalArgumentException">
+    <wsdl:part element="tns:AperteWsIllegalArgumentException" name="AperteWsIllegalArgumentException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findUserTasksPagingResponse">
+    <wsdl:part element="tns:findUserTasksPagingResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getOutgoingTransitionNamesByTaskIdResponse">
+    <wsdl:part element="tns:getOutgoingTransitionNamesByTaskIdResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="startProcessInstanceResponse">
+    <wsdl:part element="tns:startProcessInstanceResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isProcessOwnedByUserResponse">
+    <wsdl:part element="tns:isProcessOwnedByUserResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="AperteWorkflowProcessServiceImpl">
+    <wsdl:operation name="getAvalivableActionForProcess">
+      <wsdl:input message="tns:getAvalivableActionForProcess" name="getAvalivableActionForProcess">
+    </wsdl:input>
+      <wsdl:output message="tns:getAvalivableActionForProcessResponse" name="getAvalivableActionForProcessResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AperteWsWrongArgumentException" name="AperteWsWrongArgumentException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="isProcessRunning">
+      <wsdl:input message="tns:isProcessRunning" name="isProcessRunning">
+    </wsdl:input>
+      <wsdl:output message="tns:isProcessRunningResponse" name="isProcessRunningResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AperteWsWrongArgumentException" name="AperteWsWrongArgumentException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findProcessTasks">
+      <wsdl:input message="tns:findProcessTasks" name="findProcessTasks">
+    </wsdl:input>
+      <wsdl:output message="tns:findProcessTasksResponse" name="findProcessTasksResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AperteWsWrongArgumentException" name="AperteWsWrongArgumentException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getOutgoingTransitionDestinationNames">
+      <wsdl:input message="tns:getOutgoingTransitionDestinationNames" name="getOutgoingTransitionDestinationNames">
+    </wsdl:input>
+      <wsdl:output message="tns:getOutgoingTransitionDestinationNamesResponse" name="getOutgoingTransitionDestinationNamesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AperteWsWrongArgumentException" name="AperteWsWrongArgumentException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="assignTaskToUser">
+      <wsdl:input message="tns:assignTaskToUser" name="assignTaskToUser">
+    </wsdl:input>
+      <wsdl:output message="tns:assignTaskToUserResponse" name="assignTaskToUserResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AperteWsWrongArgumentException" name="AperteWsWrongArgumentException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createProcessInstance">
+      <wsdl:input message="tns:createProcessInstance" name="createProcessInstance">
+    </wsdl:input>
+      <wsdl:output message="tns:createProcessInstanceResponse" name="createProcessInstanceResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOutgoingTransitionNamesByTaskId">
+      <wsdl:input message="tns:getOutgoingTransitionNamesByTaskId" name="getOutgoingTransitionNamesByTaskId">
+    </wsdl:input>
+      <wsdl:output message="tns:getOutgoingTransitionNamesByTaskIdResponse" name="getOutgoingTransitionNamesByTaskIdResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AperteWsWrongArgumentException" name="AperteWsWrongArgumentException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getProcessHistory">
+      <wsdl:input message="tns:getProcessHistory" name="getProcessHistory">
+    </wsdl:input>
+      <wsdl:output message="tns:getProcessHistoryResponse" name="getProcessHistoryResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AperteWsWrongArgumentException" name="AperteWsWrongArgumentException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="isProcessOwnedByUser">
+      <wsdl:input message="tns:isProcessOwnedByUser" name="isProcessOwnedByUser">
+    </wsdl:input>
+      <wsdl:output message="tns:isProcessOwnedByUserResponse" name="isProcessOwnedByUserResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AperteWsWrongArgumentException" name="AperteWsWrongArgumentException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="performAction">
+      <wsdl:input message="tns:performAction" name="performAction">
+    </wsdl:input>
+      <wsdl:output message="tns:performActionResponse" name="performActionResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AperteWsWrongArgumentException" name="AperteWsWrongArgumentException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getTaskData">
+      <wsdl:input message="tns:getTaskData" name="getTaskData">
+    </wsdl:input>
+      <wsdl:output message="tns:getTaskDataResponse" name="getTaskDataResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AperteWsWrongArgumentException" name="AperteWsWrongArgumentException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:AperteWsIllegalArgumentException" name="AperteWsIllegalArgumentException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findUserTasksPaging">
+      <wsdl:input message="tns:findUserTasksPaging" name="findUserTasksPaging">
+    </wsdl:input>
+      <wsdl:output message="tns:findUserTasksPagingResponse" name="findUserTasksPagingResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AperteWsWrongArgumentException" name="AperteWsWrongArgumentException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllTasks">
+      <wsdl:input message="tns:getAllTasks" name="getAllTasks">
+    </wsdl:input>
+      <wsdl:output message="tns:getAllTasksResponse" name="getAllTasksResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="adminCancelProcessInstance">
+      <wsdl:input message="tns:adminCancelProcessInstance" name="adminCancelProcessInstance">
+    </wsdl:input>
+      <wsdl:output message="tns:adminCancelProcessInstanceResponse" name="adminCancelProcessInstanceResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AperteWsWrongArgumentException" name="AperteWsWrongArgumentException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="startProcessInstance">
+      <wsdl:input message="tns:startProcessInstance" name="startProcessInstance">
+    </wsdl:input>
+      <wsdl:output message="tns:startProcessInstanceResponse" name="startProcessInstanceResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AperteWsWrongArgumentException" name="AperteWsWrongArgumentException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:AperteWsIllegalArgumentException" name="AperteWsIllegalArgumentException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AperteWorkflowProcessServiceImplServiceSoapBinding" type="tns:AperteWorkflowProcessServiceImpl">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getAvalivableActionForProcess">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getAvalivableActionForProcess">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAvalivableActionForProcessResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AperteWsWrongArgumentException">
+        <soap:fault name="AperteWsWrongArgumentException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findProcessTasks">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="findProcessTasks">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="findProcessTasksResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AperteWsWrongArgumentException">
+        <soap:fault name="AperteWsWrongArgumentException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="isProcessRunning">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="isProcessRunning">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="isProcessRunningResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AperteWsWrongArgumentException">
+        <soap:fault name="AperteWsWrongArgumentException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getOutgoingTransitionDestinationNames">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getOutgoingTransitionDestinationNames">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getOutgoingTransitionDestinationNamesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AperteWsWrongArgumentException">
+        <soap:fault name="AperteWsWrongArgumentException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="assignTaskToUser">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="assignTaskToUser">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="assignTaskToUserResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AperteWsWrongArgumentException">
+        <soap:fault name="AperteWsWrongArgumentException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createProcessInstance">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="createProcessInstance">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="createProcessInstanceResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOutgoingTransitionNamesByTaskId">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getOutgoingTransitionNamesByTaskId">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getOutgoingTransitionNamesByTaskIdResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AperteWsWrongArgumentException">
+        <soap:fault name="AperteWsWrongArgumentException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getProcessHistory">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getProcessHistory">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getProcessHistoryResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AperteWsWrongArgumentException">
+        <soap:fault name="AperteWsWrongArgumentException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="isProcessOwnedByUser">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="isProcessOwnedByUser">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="isProcessOwnedByUserResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AperteWsWrongArgumentException">
+        <soap:fault name="AperteWsWrongArgumentException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="performAction">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="performAction">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="performActionResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AperteWsWrongArgumentException">
+        <soap:fault name="AperteWsWrongArgumentException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getTaskData">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getTaskData">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getTaskDataResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AperteWsWrongArgumentException">
+        <soap:fault name="AperteWsWrongArgumentException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="AperteWsIllegalArgumentException">
+        <soap:fault name="AperteWsIllegalArgumentException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findUserTasksPaging">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="findUserTasksPaging">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="findUserTasksPagingResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AperteWsWrongArgumentException">
+        <soap:fault name="AperteWsWrongArgumentException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllTasks">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getAllTasks">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAllTasksResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="adminCancelProcessInstance">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="adminCancelProcessInstance">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="adminCancelProcessInstanceResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AperteWsWrongArgumentException">
+        <soap:fault name="AperteWsWrongArgumentException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="startProcessInstance">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="startProcessInstance">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="startProcessInstanceResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AperteWsWrongArgumentException">
+        <soap:fault name="AperteWsWrongArgumentException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="AperteWsIllegalArgumentException">
+        <soap:fault name="AperteWsIllegalArgumentException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AperteWorkflowProcessServiceImplService">
+    <wsdl:port binding="tns:AperteWorkflowProcessServiceImplServiceSoapBinding" name="AperteWorkflowProcessServiceImplPort">
+      <soap:address location="http://localhost:8080/aperteworkflow/services/process" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="it.sincon.sanita.services.model.CategoriaStruttura" />
+	<import class="it.sincon.sanita.services.model.CFG_CategorieAbilitate" />
+	<import class="it.sincon.sanita.services.model.News" />
+	<import class="it.sincon.sanita.services.model.StrutturaSanitaria" />
+	<import class="it.sincon.sanita.services.model.StrutturaSanitariaFiglia" />
+	<class name="it.sincon.sanita.services.model.impl.CategoriaStrutturaImpl" table="SANITAREST_CategoriaStruttura">
+		<cache usage="read-write" />
+		<id name="idTipoStruttura" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+		<property name="denominazione" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="it.sincon.sanita.services.model.impl.CFG_CategorieAbilitateImpl" table="SANITAREST_CFG_CategorieAbilitate">
+		<cache usage="read-write" />
+		<id name="titoloStruttura" type="java.lang.String">
+			<generator class="assigned" />
+		</id>
+		<property name="denominazione" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="ordine" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="className" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="defaultRicerca" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+	</class>
+	<class name="it.sincon.sanita.services.model.impl.NewsImpl" table="SANITAREST_News">
+		<cache usage="read-write" />
+		<id name="pk" type="long">
+			<generator class="increment" />
+		</id>
+		<property name="idNews" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="idAzienda" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="titolo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="immagine" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="descrizione" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="dataPubblicazione" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="autore" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="locale" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="it.sincon.sanita.services.model.impl.StrutturaSanitariaImpl" table="SANITAREST_StrutturaSanitaria">
+		<cache usage="read-write" />
+		<id name="pk" type="long">
+			<generator class="increment" />
+		</id>
+		<property name="idStruttura" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="idTipoStruttura" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="tipoStruttura" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="tipologia" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="denominazione" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="immagine" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="descrizione" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="indirizzo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="lat" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="lng" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="distanza" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="telefono" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="email" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="fax" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="orari" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="locale" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="stato" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="childrenEdottoOspedaleCollegato" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="childrenEdottoAmbulatorio" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="childrenEdottoUnitaOperativa" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="childrenEdottoUnitaps" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="relazioneAmbulatorio" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="it.sincon.sanita.services.model.impl.StrutturaSanitariaFigliaImpl" table="SANITAREST_StrutturaSanitariaFiglia">
+		<cache usage="read-write" />
+		<id name="idStrutturaFiglia" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="tipoStruttura" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="denominazione" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="indirizzo" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="direttore" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="responsabileSanitario" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="telefono" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="email" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://cup.sanita.puglia.it/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://cup.sanita.puglia.it/">
+	<xsd:complexType name="Prestazione">
+		<xsd:sequence>
+            <xsd:element name="numPrescrizione" nillable="true" type="xsd:string"/>
+            <xsd:element name="idPrestazione" nillable="true" type="xsd:string"/>
+			 <xsd:element name="idPrestazioneRmt"  minOccurs="0" nillable="true" type="xsd:string"/>
+            <xsd:element name="statoPrestazione" nillable="true" type="xsd:string"/>
+            <xsd:element name="codicePrestazione" nillable="true" type="xsd:string"/>
+            <xsd:element name="costoPrestazione" nillable="true" type="xsd:string"/>
+			<xsd:element name="compEsePatologia"  minOccurs="0" nillable="true" type="xsd:string"/>
+            <xsd:element name="descrizionePrestazione" nillable="true" type="xsd:string"/>
+            <xsd:element name="dataModificaStatoPre" minOccurs="0" nillable="true" type="xsd:string"/>
+			<xsd:element name="idDisdettaPre" minOccurs="0" nillable="true" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

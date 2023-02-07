@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://cup.sanita.puglia.it/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://cup.sanita.puglia.it/">
+	<xsd:complexType name="TesseraTeam">
+		<xsd:sequence>
+            <xsd:element name="numeroTessera"  minOccurs="0"  nillable="true" type="xsd:string"/>
+            <xsd:element name="numeroPersonale"  minOccurs="0"  nillable="true" type="xsd:string"/>
+            <xsd:element name="numeroIstituzione"  minOccurs="0"  nillable="true" type="xsd:string"/>
+            <xsd:element name="dataScadenza"  minOccurs="0"  nillable="true" type="xsd:string"/>
+	     <xsd:element name="siglaNazione"  minOccurs="0"  nillable="true" type="xsd:string"/>
+			</xsd:sequence>
+	</xsd:complexType>
+	<xsd:complexType name="Paziente">
+		<xsd:sequence>
+	    <xsd:element name="siglaRegole"  minOccurs="0"  nillable="true" type="xsd:string"/>
+            <xsd:element name="idPaziente"  minOccurs="0"  nillable="true" type="xsd:string"/>
+            <xsd:element name="idPazienteSGP"  minOccurs="0"  nillable="true" type="xsd:string"/>
+            <xsd:element name="nome"  minOccurs="0"  nillable="true" type="xsd:string"/>
+            <xsd:element name="cognome"  minOccurs="0"  nillable="true" type="xsd:string"/>
+            <xsd:element name="dataNascita"  minOccurs="0"  nillable="true" type="xsd:string"/>
+            <xsd:element name="sesso"  minOccurs="0"  nillable="true" type="xsd:string"/>
+            <xsd:element name="codiceFiscale"  minOccurs="0"  nillable="true" type="xsd:string"/>
+            <xsd:element name="indirizzoDomicilio"  minOccurs="0"  nillable="true" type="xsd:string"/>
+			<xsd:element name="nCivicoDomicilio"  minOccurs="0"  nillable="true" type="xsd:string"/>
+			<xsd:element name="comuneDomicilio"  minOccurs="0"  nillable="true" type="xsd:string"/>
+			<xsd:element name="comuneDomicilioDesc"  minOccurs="0"  nillable="true" type="xsd:string"/>
+			<xsd:element name="capDomicilio"  minOccurs="0"  nillable="true" type="xsd:string"/>
+            <xsd:element name="indirizzoResidenza"  minOccurs="0"  nillable="true" type="xsd:string"/>
+			<xsd:element name="nCivicoResidenza"  minOccurs="0"  nillable="true" type="xsd:string"/>
+			<xsd:element name="comuneResidenza"  minOccurs="0"  nillable="true" type="xsd:string"/>
+			<xsd:element name="comuneResidenzaDesc"  minOccurs="0"  nillable="true" type="xsd:string"/>
+			<xsd:element name="capResidenza"  minOccurs="0"  nillable="true" type="xsd:string"/>
+            <xsd:element name="comuneNascita"  minOccurs="0"  nillable="true" type="xsd:string"/>
+			 <xsd:element name="comuneNascitaDesc"  minOccurs="0"  nillable="true" type="xsd:string"/>
+            <xsd:element name="aslAppartenenza"  minOccurs="0"  nillable="true" type="xsd:string"/>
+			 <xsd:element name="aslAppartenenzaDesc"  minOccurs="0"  nillable="true" type="xsd:string"/>
+            <xsd:element name="aslAssistenza"  minOccurs="0"  nillable="true" type="xsd:string"/>
+			<xsd:element name="aslAssistenzaDesc"  minOccurs="0"  nillable="true" type="xsd:string"/>
+            <xsd:element name="cittadinanza"  minOccurs="0"  nillable="true" type="xsd:string"/>
+			<xsd:element name="cittadinanzaDesc"  minOccurs="0"  nillable="true" type="xsd:string"/>
+			<xsd:element name="tel1"  minOccurs="0"  nillable="true" type="xsd:string"/>
+			<xsd:element name="tel2"  minOccurs="0"  nillable="true" type="xsd:string"/>
+			<xsd:element name="tel3"  minOccurs="0"  nillable="true" type="xsd:string"/>
+            <xsd:element name="tesseraTeam"  minOccurs="0"  nillable="true" type="tns:TesseraTeam"/>
+			</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>	

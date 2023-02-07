@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2008 sp1 (http://www.altova.com) by Romanazzi (TECNOPOLIS CSATA) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://protocolloWS.egov.rupar.puglia.it/protocollo" targetNamespace="http://protocolloWS.egov.rupar.puglia.it/protocollo" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="Credenziali.xsd"/>
+	<xs:element name="ParametriRicercaAOO">
+		<xs:annotation>
+			<xs:documentation>
+				Elemento Contenente i parametri del WS di ricerca AOO
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>		
+				<xs:element ref="ns1:CredenzialiUtente"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RispostaRicercaAOO">
+		<xs:annotation>
+			<xs:documentation>
+				Elemento Contenente la risposta alla ricerca AOO
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ns1:NumeroAOOTrovate"/>
+				<xs:element ref="ns1:AnagraficaAOO" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NumeroAOOTrovate" type="xs:int"/>
+	<xs:element name="AnagraficaAOO">
+		<xs:annotation>
+			<xs:documentation>
+				Elemento Contenente la singola AOO che soddisfa i
+				requisiti di ricerca.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ns1:CodiceAOO"/>
+				<xs:element ref="ns1:CodiceAmministrazione"/>
+				<xs:element name="DescrizioneAoo" type="xs:string"/>
+				<xs:element name="DescrizioneAmministrazione" type="xs:string"/>
+				<xs:element ref="ns1:IndirizzoTelematico" minOccurs="0"/>
+				<xs:element ref="ns1:Telefono" minOccurs="0"/>
+				<xs:element ref="ns1:Fax"  minOccurs="0"/>
+				<xs:element ref="ns1:IndirizzoPostale" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

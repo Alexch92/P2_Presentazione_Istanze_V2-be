@@ -1,0 +1,359 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>it.sincon</groupId>
+		<artifactId>redditoenergetico-services</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>domain-service</artifactId>
+	<name>Domain Service Project</name>
+	<groupId>it.sincon</groupId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<!-- <hibernate.version>3.6.7.Final</hibernate.version>
+		<jasper-reports.version>4.1.2</jasper-reports.version>
+		<spring.version>3.0.6.RELEASE</spring.version>
+		<spring.ws.version>2.0.2.RELEASE</spring.ws.version>
+		<spring.security.version>3.0.7.RELEASE</spring.security.version> -->
+		<!-- FIXME I test sono stati rotti e richiedono manutenzione! -->
+		<skipTests>true</skipTests>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk16</artifactId>
+			<version>1.46</version>
+			<!-- <scope>provided</scope> -->
+		</dependency>
+
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-ext-jdk16</artifactId>
+			<version>1.46</version>
+			<!-- <scope>provided</scope> -->
+		</dependency>
+
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcpg-jdk16</artifactId>
+			<version>1.46</version>
+			<!-- <scope>provided</scope> -->
+		</dependency>
+
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcmail-jdk16</artifactId>
+			<version>1.46</version>
+			<!-- <scope>provided</scope>  -->
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-aspects</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security.extensions</groupId>
+			<artifactId>spring-security-portlet</artifactId>
+			<version>1.0.0.CI-SNAPSHOT</version>
+		</dependency>
+				<dependency>
+		    <groupId>org.apache.tika</groupId>
+		    <artifactId>tika-parsers</artifactId>
+		    <version>1.9</version>
+		    <exclusions>
+		    	<exclusion>
+		    		<groupId>org.apache.cxf</groupId>
+		    		<artifactId>cxf-rt-rs-client</artifactId>
+		    	</exclusion>
+		    	<exclusion>
+		    		<groupId>org.bouncycastle</groupId>
+		    		<artifactId>bcmail-jdk15on</artifactId>
+		    	</exclusion>
+		    	<exclusion>
+		    		<groupId>org.bouncycastle</groupId>
+		    		<artifactId>bcprov-jdk15on</artifactId>
+		    	</exclusion>
+		    </exclusions>
+				</dependency>
+
+		<dependency>
+			<groupId>it.sincon.build.3rdparty</groupId>
+			<artifactId>jasper-reports</artifactId>
+			<type>pom</type>
+			<version>${jasper-reports.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>bctsp-jdk14</artifactId>
+					<groupId>org.bouncycastle</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>it.sincon.build.3rdparty</groupId>
+			<artifactId>alfresco-webservice</artifactId>
+			<version>1.0</version>
+			<type>pom</type>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<dependency>
+			<groupId>jdom</groupId>
+			<artifactId>jdom</artifactId>
+			<version>1.1</version>
+		</dependency>
+		<!-- Web Services support -->
+		<!-- <dependency>
+			<groupId>it.sincon.build.3rdparty</groupId>
+			<artifactId>apache-cxf</artifactId>
+			<version>${cxf.version}</version>
+			<type>pom</type>
+			<exclusions>
+				<exclusion>
+					<artifactId>geronimo-javamail_1.4_spec</artifactId>
+					<groupId>org.apache.geronimo.specs</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency> -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>2.1.13</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openoffice</groupId>
+			<artifactId>ridl</artifactId>
+			<version>3.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.artofsolving</groupId>
+			<artifactId>jodconverter</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.jbpm</groupId>
+			<artifactId>jbpm-jpdl</artifactId>
+			<version>3.2.2</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<!-- FLEXJSON -->
+		<dependency>
+			<groupId>net.sf.flexjson</groupId>
+			<artifactId>flexjson</artifactId>
+			<version>3.1</version>
+		</dependency>
+
+		<!-- Servizi SINCON Esterni -->
+		<dependency>
+			<groupId>it.sincon</groupId>
+			<artifactId>domain</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>it.sincon</groupId>
+			<artifactId>documentale-service</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>it.sincon.build.3rdparty</groupId>
+					<artifactId>alfresco-webservice</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>it.sincon.build.3rdparty</groupId>
+					<artifactId>spring-framework</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>it.sincon.build.3rdparty</groupId>
+					<artifactId>spring-framework-test</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>it.sincon</groupId>
+			<artifactId>protocollo-service</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.cxf</groupId>
+					<artifactId>cxf-rt-frontend-jaxws</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.cxf</groupId>
+					<artifactId>cxf-rt-transports-http</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>it.sincon</groupId>
+			<artifactId>calendar-service</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>it.sincon</groupId>
+			<artifactId>visura-service</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+	</dependencies>
+	
+	<build>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+		<pluginManagement>
+		<plugins>
+			<!-- Esempio a riga di comando: wsdl2java -frontend jaxws21 -client -verbose 
+				-p http://localhost:8080/pdds/services/pddsAdapter=it.osapulie.web.ws -d 
+				target/generated-sources/cxf src/main/resources/wsdl/pddsAdapter.wsdl -->
+			<!-- <plugin>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-codegen-plugin</artifactId>
+				<version>${cxf.version}</version>
+				<executions>
+					<execution>
+						<id>generate-sources</id>
+						<phase>generate-sources</phase>
+						<configuration>
+							<defaultOptions>
+								<bindingFiles>
+									<bindingFile>${basedir}/src/main/resources/wsdl/bindings.xml</bindingFile>
+								</bindingFiles>
+							</defaultOptions>
+							<wsdlOptions>
+								<wsdlOption>
+									<wsdl>${basedir}/src/main/resources/wsdl/AperteWorkflowProcess.wsdl</wsdl>
+									<extraargs>
+										<extraarg>-fe</extraarg>
+										<extraarg>jaxws21</extraarg>
+										<extraarg>-verbose</extraarg>
+										<extraarg>-p</extraarg>
+										<extraarg>http://localhost:8080/aperteworkflow/services/process=it.sincon.gepred.web.ws.workflow</extraarg>
+									</extraargs>
+								</wsdlOption>
+								<wsdlOption>
+									<wsdl>${basedir}/src/main/resources/wsdl/AperteWorkflowData.wsdl</wsdl>
+									<extraargs>
+										<extraarg>-fe</extraarg>
+										<extraarg>jaxws21</extraarg>
+										<extraarg>-verbose</extraarg>
+										<extraarg>-p</extraarg>
+										<extraarg>http://localhost:8080/aperteworkflow/services/data=it.sincon.gepred.web.ws.workflow.data</extraarg>
+									</extraargs>
+								</wsdlOption>
+							</wsdlOptions>
+						</configuration>
+						<goals>
+							<goal>wsdl2java</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin> -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<configuration>
+							<tasks>
+								<echo>Copia files</echo>
+								<!-- copio le classi MailSender e MailPecSender in base alla versione 
+									di liferay utilizzata. La 6.0.6 ha il metodo addAttachment nella classe MailMessage 
+									invece la 6.1 e la 6.2 addFileAttachment -->
+								<delete>
+									<fileset
+										dir="${project.basedir}/src/main/java/it/osapulie/web/portlet/util"
+										includes="MailSenderHelper.java" />
+								</delete>
+								<delete>
+									<fileset
+										dir="${project.basedir}/src/main/java/it/osapulie/web/portlet/util"
+										includes="MailPecSenderHelper.java" />
+								</delete>
+								<delete>
+									<fileset dir="${project.basedir}/src/main/resources/META-INF"
+										includes="prod-persistence.xml" />
+								</delete>
+								<delete>
+									<fileset
+										dir="${project.basedir}/src/main/resources/META-INF/spring"
+										includes="persistence-layer-context.xml" />
+								</delete>
+								<copy
+									file="${project.basedir}/src/main/resources/${targetProject}/MailSenderHelper.java"
+									tofile="${project.basedir}/src/main/java/it/osapulie/web/portlet/util/MailSenderHelper.java" />
+								<copy
+									file="${project.basedir}/src/main/resources/${targetProject}/MailPecSenderHelper.java"
+									tofile="${project.basedir}/src/main/java/it/osapulie/web/portlet/util/MailPecSenderHelper.java" />
+								<copy
+									file="${project.basedir}/src/main/resources/${targetProject}/prod-persistence.xml"
+									tofile="${project.basedir}/src/main/resources/META-INF/prod-persistence.xml" />
+								<copy
+									file="${project.basedir}/src/main/resources/${targetProject}/persistence-layer-context.xml"
+									tofile="${project.basedir}/src/main/resources/META-INF/spring/persistence-layer-context.xml" />
+							</tasks>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		</pluginManagement>
+	</build>
+	
+	
+</project>

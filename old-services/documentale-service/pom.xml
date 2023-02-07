@@ -1,0 +1,160 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>it.sincon</groupId>
+		<artifactId>redditoenergetico-services</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<groupId>it.sincon</groupId>
+	<artifactId>documentale-service</artifactId>
+	<name>Documentale Service Project</name>
+
+	<properties>
+		<!-- Generic properties -->
+		<java.version>1.6</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<!-- Apache AXIS -->
+		<axis.version>1.4</axis.version>
+
+		<jasper-reports.version>4.1.2</jasper-reports.version>
+		<spring.version>3.0.6.RELEASE</spring.version>
+		<spring.ws.version>2.0.2.RELEASE</spring.ws.version>
+		<spring.security.version>3.0.7.RELEASE</spring.security.version>
+
+
+
+		<!-- Logging -->
+		<slf4j.version>1.5.11</slf4j.version>
+
+		<!-- FIXME I test sono stati rotti e richiedono manutenzione! -->
+		<!-- Test -->
+		<junit.version>4.11</junit.version>
+		<skipTests>true</skipTests>
+	</properties>
+
+	<dependencies>
+
+		<!-- Apache AXIS -->
+		<dependency>
+			<groupId>org.apache.axis</groupId>
+			<artifactId>axis</artifactId>
+			<version>${axis.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.axis</groupId>
+			<artifactId>axis-jaxrpc</artifactId>
+			<version>${axis.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-discovery</groupId>
+			<artifactId>commons-discovery</artifactId>
+			<version>0.2</version>
+		</dependency>
+
+		<!-- Alfresco Web services -->
+		<dependency>
+			<groupId>it.sincon.build.3rdparty</groupId>
+			<artifactId>alfresco-webservice</artifactId>
+			<version>1.0</version>
+			<type>pom</type>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.axis</groupId>
+					<artifactId>axis</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.apache.axis</groupId>
+					<artifactId>axis-jaxrpc</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>commons-discovery</groupId>
+					<artifactId>commons-discovery</artifactId>
+				</exclusion>
+				<exclusion>
+					<artifactId>commons-logging</artifactId>
+					<groupId>commons-logging</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>jdom</groupId>
+			<artifactId>jdom</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+		<!-- Spring framework. -->
+		<dependency>
+			<groupId>it.sincon.build.3rdparty</groupId>
+			<artifactId>spring-framework</artifactId>
+			<version>${spring.version}</version>
+			<type>pom</type>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.0-api</artifactId>
+			<version>1.0.1.Final</version>
+		</dependency>
+
+
+		<!-- Logging with SLF4J -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- Test Artifacts -->
+		<!-- Spring framework Testing dependecies -->
+		<dependency>
+			<groupId>it.sincon.build.3rdparty</groupId>
+			<artifactId>spring-framework-test</artifactId>
+			<version>${spring.version}</version>
+			<type>pom</type>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>junit</groupId>
+					<artifactId>junit</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>wss4j</groupId>
+			<artifactId>wss4j</artifactId>
+			<version>1.5.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-client</artifactId>
+			<version>1.19.4</version>
+		</dependency>
+		<!--  Diogene REST -->
+		<dependency>
+			<groupId>it.innovapuglia.diogene.middletier</groupId>
+			<artifactId>diogene-models</artifactId>
+			<version>2.0</version>
+		</dependency>
+		<dependency>
+            <groupId>it.innovapuglia.diogene.fronttier</groupId>
+            <artifactId>diogene-restclient</artifactId>
+            <version>2.1</version>
+        </dependency>
+
+	</dependencies>
+	
+	<version>0.0.1-SNAPSHOT</version>
+</project>

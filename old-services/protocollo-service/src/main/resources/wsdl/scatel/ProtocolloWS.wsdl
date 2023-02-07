@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://protocolloWS.egov.rupar.puglia.it/ProtocolloWS.wsdl" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsd2="http://protocolloWS.egov.rupar.puglia.it/protocollo" xmlns:xsd3="http://protocolloWS.egov.rupar.puglia.it/protocollo" xmlns:ns="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" name="ProtocolloWS" targetNamespace="http://protocolloWS.egov.rupar.puglia.it/ProtocolloWS.wsdl">
+	<wsdl:types>
+		<xsd:schema targetNamespace="protocollo">
+			<xsd:import namespace="http://protocolloWS.egov.rupar.puglia.it/protocollo" schemaLocation="Protocollo.xsd"/>
+		</xsd:schema>
+		<xsd:schema targetNamespace="ricercaAOO">
+			<xsd:import namespace="http://protocolloWS.egov.rupar.puglia.it/protocollo" schemaLocation="RicercaAOO.xsd"/>
+		</xsd:schema>
+		<xsd:schema targetNamespace="ricerca">
+			<xsd:import namespace="http://protocolloWS.egov.rupar.puglia.it/protocollo" schemaLocation="Ricerca.xsd"/>
+		</xsd:schema>
+		<xsd:schema targetNamespace="inoltri">
+			<xsd:import namespace="http://protocolloWS.egov.rupar.puglia.it/protocollo" schemaLocation="Inoltri.xsd"/>
+		</xsd:schema>		
+	</wsdl:types>
+	<wsdl:message name="RichiestaProtocolloMessage">
+		<wsdl:part name="arg1" element="xsd2:ParametriEseguiProtocollo"/>
+	</wsdl:message>
+	<wsdl:message name="RispostaProtocolloMessage">
+		<wsdl:part name="arg1" element="xsd2:RispostaProtocollo"/>
+	</wsdl:message>
+	<wsdl:message name="RichiestaRicercaAOO">
+		<wsdl:part name="arg1" element="xsd3:ParametriRicercaAOO"/>
+	</wsdl:message>
+	<wsdl:message name="RispostaRicercaAOO">
+		<wsdl:part name="arg1" element="xsd3:RispostaRicercaAOO"/>
+	</wsdl:message>
+	<wsdl:message name="RichiestaRicercaProtocolloMessage">
+		<wsdl:part name="arg1" element="xsd2:ParametriRicercaProtocollo"/>
+	</wsdl:message>
+	<wsdl:message name="RispostaRicercaProtocolloMessage">
+		<wsdl:part name="arg1" element="xsd2:RispostaRicercaProtocollo"/>
+	</wsdl:message>
+	<wsdl:message name="RichiestaDettaglioProtocolloMessage">
+		<wsdl:part name="inputpar" element="xsd2:ParametriRichiestaProtocollo"/>
+	</wsdl:message>
+	<wsdl:message name="RispostaDettaglioProtocolloMessage">
+		<wsdl:part name="outputpar" element="xsd2:RispostaDettaglioProtocollo"/>
+	</wsdl:message>
+	<wsdl:message name="RichiestaDocumentiProtocolloMessage">
+		<wsdl:part name="inputpar" element="xsd2:ParametriRichiestaDocumentiProtocollo"/>
+	</wsdl:message>
+	<wsdl:message name="RispostaDocumentiProtocolloMessage">
+		<wsdl:part name="outputpar" element="xsd2:RispostaPrelievoDocumentiProtocollati"/>
+	</wsdl:message>
+	<wsdl:message name="RichiestaRicercaAssegnazioniInoltriMessage">
+		<wsdl:part name="inputpar" element="xsd2:ParametriRicercaAssegnazioniInoltriProtocollo"/>
+	</wsdl:message>
+	<wsdl:message name="RispostaRicercaAssegnazioniInoltriMessage">
+		<wsdl:part name="outputpar" element="xsd2:RispostaRicercaAssegnazioniInoltriProtocollo"/>
+	</wsdl:message>	
+	<wsdl:portType name="ProtocolloPortType">
+		<wsdl:operation name="EseguiProtocollazione">
+			<wsdl:input message="tns:RichiestaProtocolloMessage"/>
+			<wsdl:output message="tns:RispostaProtocolloMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="RicercaAOO">
+			<wsdl:input message="tns:RichiestaRicercaAOO"/>
+			<wsdl:output message="tns:RispostaRicercaAOO"/>
+		</wsdl:operation>
+		<wsdl:operation name="RicercaProtocolli">
+			<wsdl:input message="tns:RichiestaRicercaProtocolloMessage"/>
+			<wsdl:output message="tns:RispostaRicercaProtocolloMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="PrelevaDettaglioProtocollo">
+			<wsdl:input message="tns:RichiestaDettaglioProtocolloMessage"/>
+			<wsdl:output message="tns:RispostaDettaglioProtocolloMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="PrelevaDocumentiProtocollo">
+			<wsdl:input message="tns:RichiestaDocumentiProtocolloMessage"/>
+			<wsdl:output message="tns:RispostaDocumentiProtocolloMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="RicercaAssegnazioniInoltri">
+			<wsdl:input message="tns:RichiestaRicercaAssegnazioniInoltriMessage"/>
+			<wsdl:output message="tns:RispostaRicercaAssegnazioniInoltriMessage"/>
+		</wsdl:operation>		
+	</wsdl:portType>
+	<wsdl:binding name="ProtocolloBinding" type="tns:ProtocolloPortType">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="EseguiProtocollazione">
+			<wsdl:input>
+				<soap:body parts="arg1" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="arg1" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RicercaAOO">
+			<wsdl:input>
+				<soap:body parts="arg1" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="arg1" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RicercaProtocolli">
+			<wsdl:input>
+				<soap:body parts="arg1" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="arg1" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="PrelevaDettaglioProtocollo">
+			<wsdl:input>
+				<soap:body parts="inputpar" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="outputpar" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="PrelevaDocumentiProtocollo">
+			<wsdl:input>
+				<soap:body parts="inputpar" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="outputpar" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="RicercaAssegnazioniInoltri">
+			<wsdl:input>
+				<soap:body parts="inputpar" use="literal"/>
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body parts="outputpar" use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>		
+	</wsdl:binding>
+	<wsdl:service name="ProtocolloWS">
+		<wsdl:port name="ProtocolloPort" binding="tns:ProtocolloBinding">
+			<soap:address location="http://as1protocollo.ct.rsr.rupar.puglia.it:8888/WSProtocollo/services/ProtocolloPort"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

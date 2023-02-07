@@ -1,0 +1,49 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://protocolloWS.egov.rupar.puglia.it/protocollo" targetNamespace="http://protocolloWS.egov.rupar.puglia.it/protocollo" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:include schemaLocation="Credenziali.xsd"/>
+	
+	<xs:element name="ParametriRicercaAssegnazioniInoltriProtocollo">
+		<xs:annotation>
+			<xs:documentation>Elemento Contenente i parametri del WS per la ricerca degli inoltri/assegnazioni di un protocollo </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ns1:CredenzialiUtente"/>
+				<xs:element ref="ns1:Identificatore"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RispostaRicercaAssegnazioniInoltriProtocollo">
+		<xs:annotation>
+			<xs:documentation>Elemento Contenente la risposta alla ricerca protocollo</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="ns1:NumeroElementiTrovati"/>
+				<xs:element ref="ns1:MatchingAssegnazioniInoltri" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="NumeroElementiTrovati" type="xs:int"/>
+
+	<xs:element name="MatchingAssegnazioniInoltri">
+		<xs:annotation>
+			<xs:documentation>Elemento Contenente la singola assegnazione/inoltro che soddisfa i requisiti di ricerca.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ModalitaInoltro" type="xs:string"/>
+				<xs:element name="DataAssegnazioneInoltro" type="xs:string"/>
+				<xs:element name="Destinatario" type="xs:string"/>
+				<xs:element name="Indirizzo" type="xs:string" minOccurs="0"/>
+				<xs:element name="Civico" type="xs:string" minOccurs="0"/>
+				<xs:element name="Comune" type="xs:string" minOccurs="0"/>
+				<xs:element name="Cap" type="xs:string" minOccurs="0"/>
+				<xs:element name="Provincia" type="xs:string" minOccurs="0"/>
+				<xs:element name="Annullato" type="xs:string" minOccurs="0"/>
+				<xs:element name="Note" type="xs:string" minOccurs="0"/>
+				<xs:element name="Operatore" type="xs:string" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	
+</xs:schema>

@@ -1,0 +1,904 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="AperteWorkflowDataServiceImplService" targetNamespace="http://service.aperteworkflow.org/" xmlns:ns1="org.aperteworkflow.service.fault" xmlns:ns2="http://schemas.xmlsoap.org/wsdl/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://service.aperteworkflow.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://service.aperteworkflow.org/" xmlns:tns="http://service.aperteworkflow.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:element name="deleteProcessInstance" type="tns:deleteProcessInstance" />
+<xs:element name="deleteProcessInstanceResponse" type="tns:deleteProcessInstanceResponse" />
+<xs:element name="findOrCreateUser" type="tns:findOrCreateUser" />
+<xs:element name="findOrCreateUserResponse" type="tns:findOrCreateUserResponse" />
+<xs:element name="findUser" type="tns:findUser" />
+<xs:element name="findUserResponse" type="tns:findUserResponse" />
+<xs:element name="getActiveConfigurationByKey" type="tns:getActiveConfigurationByKey" />
+<xs:element name="getActiveConfigurationByKeyResponse" type="tns:getActiveConfigurationByKeyResponse" />
+<xs:element name="getActiveConfigurations" type="tns:getActiveConfigurations" />
+<xs:element name="getActiveConfigurationsResponse" type="tns:getActiveConfigurationsResponse" />
+<xs:element name="getAllActionsListFromDefinition" type="tns:getAllActionsListFromDefinition" />
+<xs:element name="getAllActionsListFromDefinitionResponse" type="tns:getAllActionsListFromDefinitionResponse" />
+<xs:element name="getProcessInstanceByExternalId" type="tns:getProcessInstanceByExternalId" />
+<xs:element name="getProcessInstanceByExternalIdResponse" type="tns:getProcessInstanceByExternalIdResponse" />
+<xs:element name="getProcessInstanceByInternalId" type="tns:getProcessInstanceByInternalId" />
+<xs:element name="getProcessInstanceByInternalIdMap" type="tns:getProcessInstanceByInternalIdMap" />
+<xs:element name="getProcessInstanceByInternalIdMapResponse" type="tns:getProcessInstanceByInternalIdMapResponse" />
+<xs:element name="getProcessInstanceByInternalIdResponse" type="tns:getProcessInstanceByInternalIdResponse" />
+<xs:element name="getSimpleAttributeValue" type="tns:getSimpleAttributeValue" />
+<xs:element name="getSimpleAttributeValueResponse" type="tns:getSimpleAttributeValueResponse" />
+<xs:element name="getSimpleAttributesList" type="tns:getSimpleAttributesList" />
+<xs:element name="getSimpleAttributesListResponse" type="tns:getSimpleAttributesListResponse" />
+<xs:element name="getUserHistory" type="tns:getUserHistory" />
+<xs:element name="getUserHistoryResponse" type="tns:getUserHistoryResponse" />
+<xs:element name="getUserProcessesBetweenDatesByUserLogin" type="tns:getUserProcessesBetweenDatesByUserLogin" />
+<xs:element name="getUserProcessesBetweenDatesByUserLoginResponse" type="tns:getUserProcessesBetweenDatesByUserLoginResponse" />
+<xs:element name="searchProcesses" type="tns:searchProcesses" />
+<xs:element name="searchProcessesResponse" type="tns:searchProcessesResponse" />
+<xs:element name="setSimpleAttribute" type="tns:setSimpleAttribute" />
+<xs:element name="setSimpleAttributeResponse" type="tns:setSimpleAttributeResponse" />
+<xs:complexType name="deleteProcessInstance">
+<xs:sequence>
+<xs:element minOccurs="0" name="internalId" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="deleteProcessInstanceResponse">
+<xs:sequence />
+</xs:complexType>
+<xs:complexType name="getSimpleAttributeValue">
+<xs:sequence>
+<xs:element minOccurs="0" name="key" type="xs:string" />
+<xs:element minOccurs="0" name="internalId" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getSimpleAttributeValueResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getActiveConfigurations">
+<xs:sequence />
+</xs:complexType>
+<xs:complexType name="getActiveConfigurationsResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:processDefinitionConfig" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="processDefinitionConfig">
+<xs:complexContent>
+<xs:extension base="tns:abstractPersistentEntity">
+<xs:sequence>
+<xs:element minOccurs="0" name="bpmDefinitionKey" type="xs:string" />
+<xs:element minOccurs="0" name="comment" type="xs:string" />
+<xs:element minOccurs="0" name="createDate" type="xs:dateTime" />
+<xs:element minOccurs="0" name="creator" type="tns:userData" />
+<xs:element minOccurs="0" name="description" type="xs:string" />
+<xs:element minOccurs="0" name="enabled" type="xs:boolean" />
+<xs:element minOccurs="0" name="latest" type="xs:boolean" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="permissions" nillable="true" type="tns:processDefinitionPermission" />
+<xs:element minOccurs="0" name="processLogo" type="xs:base64Binary" />
+<xs:element minOccurs="0" name="processName" type="xs:string" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="states" nillable="true" type="tns:processStateConfiguration" />
+<xs:element minOccurs="0" name="taskItemClass" type="xs:string" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType abstract="true" name="abstractPersistentEntity">
+<xs:sequence>
+<xs:element minOccurs="0" name="id" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="userData">
+<xs:complexContent>
+<xs:extension base="tns:userAttributesSupport">
+<xs:sequence>
+<xs:element minOccurs="0" name="companyId" type="xs:long" />
+<xs:element minOccurs="0" name="email" type="xs:string" />
+<xs:element minOccurs="0" name="firstName" type="xs:string" />
+<xs:element minOccurs="0" name="jobTitle" type="xs:string" />
+<xs:element minOccurs="0" name="lastName" type="xs:string" />
+<xs:element minOccurs="0" name="liferayUserId" type="xs:long" />
+<xs:element minOccurs="0" name="login" type="xs:string" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="orphans" nillable="true" type="tns:userAttribute" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="roleNames" nillable="true" type="xs:string" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="roles" nillable="true" type="tns:userRole" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType abstract="true" name="userAttributesSupport">
+<xs:complexContent>
+<xs:extension base="tns:abstractPersistentEntity">
+<xs:sequence />
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="userAttribute">
+<xs:complexContent>
+<xs:extension base="tns:userAttributesSupport">
+<xs:sequence>
+<xs:element minOccurs="0" name="key" type="xs:string" />
+<xs:element minOccurs="0" name="parent" type="tns:userAttribute" />
+<xs:element minOccurs="0" name="value" type="xs:string" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="userRole">
+<xs:complexContent>
+<xs:extension base="tns:abstractPersistentEntity">
+<xs:sequence>
+<xs:element minOccurs="0" name="description" type="xs:string" />
+<xs:element minOccurs="0" name="name" type="xs:string" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="processDefinitionPermission">
+<xs:complexContent>
+<xs:extension base="tns:abstractPermission">
+<xs:sequence />
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType abstract="true" name="abstractPermission">
+<xs:complexContent>
+<xs:extension base="tns:abstractPersistentEntity">
+<xs:sequence>
+<xs:element minOccurs="0" name="privilegeName" type="xs:string" />
+<xs:element minOccurs="0" name="roleName" type="xs:string" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="processStateConfiguration">
+<xs:complexContent>
+<xs:extension base="tns:abstractPersistentEntity">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="actions" nillable="true" type="tns:processStateAction" />
+<xs:element minOccurs="0" name="commentary" type="xs:string" />
+<xs:element minOccurs="0" name="description" type="xs:string" />
+<xs:element minOccurs="0" name="enableManualSave" type="xs:boolean" />
+<xs:element minOccurs="0" name="name" type="xs:string" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="permissions" nillable="true" type="tns:processStatePermission" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="widgets" nillable="true" type="tns:processStateWidget" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="processStateAction">
+<xs:complexContent>
+<xs:extension base="tns:abstractPersistentEntity">
+<xs:sequence>
+<xs:element minOccurs="0" name="actionType" type="xs:string" />
+<xs:element minOccurs="0" name="assignProcessStatus" type="xs:string" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="attributes" nillable="true" type="tns:processStateActionAttribute" />
+<xs:element minOccurs="0" name="autohide" type="xs:boolean" />
+<xs:element minOccurs="0" name="bpmName" type="xs:string" />
+<xs:element minOccurs="0" name="buttonName" type="xs:string" />
+<xs:element minOccurs="0" name="description" type="xs:string" />
+<xs:element minOccurs="0" name="label" type="xs:string" />
+<xs:element minOccurs="0" name="markProcessImportant" type="xs:boolean" />
+<xs:element minOccurs="0" name="notification" type="xs:string" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="permissions" nillable="true" type="tns:processStateActionPermission" />
+<xs:element minOccurs="0" name="priority" type="xs:int" />
+<xs:element minOccurs="0" name="question" type="xs:string" />
+<xs:element minOccurs="0" name="skipSaving" type="xs:boolean" />
+<xs:element minOccurs="0" name="title" type="xs:string" />
+<xs:element minOccurs="0" name="url" type="xs:string" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="processStateActionAttribute">
+<xs:complexContent>
+<xs:extension base="tns:abstractPersistentEntity">
+<xs:sequence>
+<xs:element minOccurs="0" name="name" type="xs:string" />
+<xs:element minOccurs="0" name="value" type="xs:string" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="processStateActionPermission">
+<xs:complexContent>
+<xs:extension base="tns:abstractPermission">
+<xs:sequence />
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="processStatePermission">
+<xs:complexContent>
+<xs:extension base="tns:abstractPermission">
+<xs:sequence />
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="processStateWidget">
+<xs:complexContent>
+<xs:extension base="tns:abstractPersistentEntity">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="attributes" nillable="true" type="tns:processStateWidgetAttribute" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="children" nillable="true" type="tns:processStateWidget" />
+<xs:element minOccurs="0" name="className" type="xs:string" />
+<xs:element minOccurs="0" name="generateFromCollection" type="xs:string" />
+<xs:element minOccurs="0" name="generatorKey" type="xs:string" />
+<xs:element minOccurs="0" name="name" type="xs:string" />
+<xs:element minOccurs="0" name="optional" type="xs:boolean" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="permissions" nillable="true" type="tns:processStateWidgetPermission" />
+<xs:element minOccurs="0" name="priority" type="xs:int" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="processStateWidgetAttribute">
+<xs:complexContent>
+<xs:extension base="tns:abstractPersistentEntity">
+<xs:sequence>
+<xs:element minOccurs="0" name="name" type="xs:string" />
+<xs:element minOccurs="0" name="value" type="xs:string" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="processStateWidgetPermission">
+<xs:complexContent>
+<xs:extension base="tns:abstractPermission">
+<xs:sequence />
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="getAllActionsListFromDefinition">
+<xs:sequence>
+<xs:element minOccurs="0" name="definitionName" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getAllActionsListFromDefinitionResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:processStateAction" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findOrCreateUser">
+<xs:sequence>
+<xs:element minOccurs="0" name="user" type="tns:userData" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findOrCreateUserResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:userData" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="setSimpleAttribute">
+<xs:sequence>
+<xs:element minOccurs="0" name="key" type="xs:string" />
+<xs:element minOccurs="0" name="newValue" type="xs:string" />
+<xs:element minOccurs="0" name="internalId" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="setSimpleAttributeResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:processInstanceSimpleAttribute" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="processInstanceSimpleAttribute">
+<xs:complexContent>
+<xs:extension base="tns:processInstanceAttribute">
+<xs:sequence>
+<xs:element minOccurs="0" name="bpmVariableName" type="xs:string" />
+<xs:element minOccurs="0" name="value" type="xs:string" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="processInstanceAttribute">
+<xs:complexContent>
+<xs:extension base="tns:abstractPersistentEntity">
+<xs:sequence>
+<xs:element minOccurs="0" name="key" type="xs:string" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="getUserHistory">
+<xs:sequence>
+<xs:element minOccurs="0" name="userLogin" type="xs:string" />
+<xs:element minOccurs="0" name="startDate" type="xs:dateTime" />
+<xs:element minOccurs="0" name="endDate" type="xs:dateTime" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getUserHistoryResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:processInstanceLog" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="processInstanceLog">
+<xs:complexContent>
+<xs:extension base="tns:abstractPersistentEntity">
+<xs:sequence>
+<xs:element minOccurs="0" name="additionalInfo" type="xs:string" />
+<xs:element minOccurs="0" name="entryDate" type="xs:dateTime" />
+<xs:element minOccurs="0" name="eventI18NKey" type="xs:string" />
+<xs:element minOccurs="0" name="executionId" type="xs:string" />
+<xs:element minOccurs="0" name="logType" type="xs:string" />
+<xs:element minOccurs="0" name="logValue" type="xs:string" />
+<xs:element minOccurs="0" name="state" type="tns:processStateConfiguration" />
+<xs:element minOccurs="0" name="user" type="tns:userData" />
+<xs:element minOccurs="0" name="userSubstitute" type="tns:userData" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="getProcessInstanceByInternalIdMap">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="internalIds" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getProcessInstanceByInternalIdMapResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:hashMap" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="hashMap">
+<xs:complexContent>
+<xs:extension base="tns:abstractMap">
+<xs:sequence />
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType abstract="true" name="abstractMap">
+<xs:sequence />
+</xs:complexType>
+<xs:complexType name="getUserProcessesBetweenDatesByUserLogin">
+<xs:sequence>
+<xs:element minOccurs="0" name="userLogin" type="xs:string" />
+<xs:element minOccurs="0" name="minDate" type="xs:dateTime" />
+<xs:element minOccurs="0" name="maxDate" type="xs:dateTime" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getUserProcessesBetweenDatesByUserLoginResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:processInstance" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="processInstance">
+<xs:complexContent>
+<xs:extension base="tns:abstractPersistentEntity">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="activeTasks" nillable="true" type="tns:bpmTask" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="assignees" nillable="true" type="xs:string" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="children" nillable="true" type="tns:processInstance" />
+<xs:element minOccurs="0" name="createDate" type="xs:dateTime" />
+<xs:element minOccurs="0" name="creator" type="tns:userData" />
+<xs:element minOccurs="0" name="definition" type="tns:processDefinitionConfig" />
+<xs:element minOccurs="0" name="definitionName" type="xs:string" />
+<xs:element minOccurs="0" name="description" type="xs:string" />
+<xs:element minOccurs="0" name="externalKey" type="xs:string" />
+<xs:element minOccurs="0" name="internalId" type="xs:string" />
+<xs:element minOccurs="0" name="keyword" type="xs:string" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="owners" nillable="true" type="xs:string" />
+<xs:element minOccurs="0" name="parent" type="tns:processInstance" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="processAttributes" nillable="true" type="tns:processInstanceAttribute" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="processLogs" nillable="true" type="tns:processInstanceLog" />
+<xs:element minOccurs="0" name="running" type="xs:boolean" />
+<xs:element minOccurs="0" name="state" type="xs:string" />
+<xs:element minOccurs="0" name="status" type="tns:processStatus" />
+<xs:element minOccurs="0" name="taskId" type="xs:string" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="taskQueues" nillable="true" type="xs:string" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="bpmTask">
+<xs:sequence>
+<xs:element minOccurs="0" name="assignee" type="xs:string" />
+<xs:element minOccurs="0" name="createDate" type="xs:dateTime" />
+<xs:element minOccurs="0" name="executionId" type="xs:string" />
+<xs:element minOccurs="0" name="finishDate" type="xs:dateTime" />
+<xs:element name="finished" type="xs:boolean" />
+<xs:element minOccurs="0" name="internalTaskId" type="xs:string" />
+<xs:element minOccurs="0" name="owner" type="tns:userData" />
+<xs:element minOccurs="0" name="processInstance" type="tns:processInstance" />
+<xs:element minOccurs="0" name="taskName" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="searchProcesses">
+<xs:sequence>
+<xs:element minOccurs="0" name="filter" type="xs:string" />
+<xs:element name="offset" type="xs:int" />
+<xs:element name="limit" type="xs:int" />
+<xs:element name="onlyRunning" type="xs:boolean" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="userRoles" type="xs:string" />
+<xs:element minOccurs="0" name="assignee" type="xs:string" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="queues" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="searchProcessesResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:processInstance" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getProcessInstanceByExternalId">
+<xs:sequence>
+<xs:element minOccurs="0" name="externalId" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getProcessInstanceByExternalIdResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:processInstance" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getSimpleAttributesList">
+<xs:sequence>
+<xs:element minOccurs="0" name="internalId" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getSimpleAttributesListResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:processInstanceSimpleAttribute" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getActiveConfigurationByKey">
+<xs:sequence>
+<xs:element minOccurs="0" name="key" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getActiveConfigurationByKeyResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:processDefinitionConfig" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findUser">
+<xs:sequence>
+<xs:element minOccurs="0" name="userLogin" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="findUserResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:userData" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getProcessInstanceByInternalId">
+<xs:sequence>
+<xs:element minOccurs="0" name="internalId" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getProcessInstanceByInternalIdResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:processInstance" />
+</xs:sequence>
+</xs:complexType>
+<xs:simpleType name="processStatus">
+<xs:restriction base="xs:string">
+<xs:enumeration value="NEW" />
+<xs:enumeration value="RUNNING" />
+<xs:enumeration value="CANCELLED" />
+<xs:enumeration value="FINISHED" />
+<xs:enumeration value="UNKNOWN" />
+</xs:restriction>
+</xs:simpleType>
+<xs:element name="AperteWsIllegalArgumentException" type="tns:AperteWsIllegalArgumentException" />
+<xs:complexType name="AperteWsIllegalArgumentException">
+<xs:sequence />
+</xs:complexType>
+</xs:schema>
+<xsd:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="org.aperteworkflow.service.fault" xmlns:tns="org.aperteworkflow.service.fault" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsd:element name="faultBean" type="tns:faultBean" />
+<xsd:complexType name="faultBean">
+<xsd:sequence />
+</xsd:complexType>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getProcessInstanceByInternalIdMap">
+    <wsdl:part element="tns:getProcessInstanceByInternalIdMap" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSimpleAttributeValue">
+    <wsdl:part element="tns:getSimpleAttributeValue" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserHistory">
+    <wsdl:part element="tns:getUserHistory" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="searchProcessesResponse">
+    <wsdl:part element="tns:searchProcessesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findOrCreateUser">
+    <wsdl:part element="tns:findOrCreateUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findUserResponse">
+    <wsdl:part element="tns:findUserResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setSimpleAttribute">
+    <wsdl:part element="tns:setSimpleAttribute" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AperteWsWrongArgumentException">
+    <wsdl:part element="ns1:faultBean" name="AperteWsWrongArgumentException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProcessInstanceByInternalIdResponse">
+    <wsdl:part element="tns:getProcessInstanceByInternalIdResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProcessInstanceByExternalId">
+    <wsdl:part element="tns:getProcessInstanceByExternalId" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSimpleAttributesListResponse">
+    <wsdl:part element="tns:getSimpleAttributesListResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllActionsListFromDefinition">
+    <wsdl:part element="tns:getAllActionsListFromDefinition" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProcessInstanceByInternalId">
+    <wsdl:part element="tns:getProcessInstanceByInternalId" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProcessInstanceByInternalIdMapResponse">
+    <wsdl:part element="tns:getProcessInstanceByInternalIdMapResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteProcessInstanceResponse">
+    <wsdl:part element="tns:deleteProcessInstanceResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProcessInstanceByExternalIdResponse">
+    <wsdl:part element="tns:getProcessInstanceByExternalIdResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findUser">
+    <wsdl:part element="tns:findUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSimpleAttributeValueResponse">
+    <wsdl:part element="tns:getSimpleAttributeValueResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setSimpleAttributeResponse">
+    <wsdl:part element="tns:setSimpleAttributeResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserProcessesBetweenDatesByUserLoginResponse">
+    <wsdl:part element="tns:getUserProcessesBetweenDatesByUserLoginResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getActiveConfigurationsResponse">
+    <wsdl:part element="tns:getActiveConfigurationsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteProcessInstance">
+    <wsdl:part element="tns:deleteProcessInstance" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserProcessesBetweenDatesByUserLogin">
+    <wsdl:part element="tns:getUserProcessesBetweenDatesByUserLogin" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSimpleAttributesList">
+    <wsdl:part element="tns:getSimpleAttributesList" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getActiveConfigurationByKey">
+    <wsdl:part element="tns:getActiveConfigurationByKey" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="searchProcesses">
+    <wsdl:part element="tns:searchProcesses" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AperteWsIllegalArgumentException">
+    <wsdl:part element="tns:AperteWsIllegalArgumentException" name="AperteWsIllegalArgumentException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getActiveConfigurationByKeyResponse">
+    <wsdl:part element="tns:getActiveConfigurationByKeyResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findOrCreateUserResponse">
+    <wsdl:part element="tns:findOrCreateUserResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserHistoryResponse">
+    <wsdl:part element="tns:getUserHistoryResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllActionsListFromDefinitionResponse">
+    <wsdl:part element="tns:getAllActionsListFromDefinitionResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getActiveConfigurations">
+    <wsdl:part element="tns:getActiveConfigurations" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="AperteWorkflowDataServiceImpl">
+    <wsdl:operation name="deleteProcessInstance">
+      <wsdl:input message="tns:deleteProcessInstance" name="deleteProcessInstance">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteProcessInstanceResponse" name="deleteProcessInstanceResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AperteWsWrongArgumentException" name="AperteWsWrongArgumentException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSimpleAttributeValue">
+      <wsdl:input message="tns:getSimpleAttributeValue" name="getSimpleAttributeValue">
+    </wsdl:input>
+      <wsdl:output message="tns:getSimpleAttributeValueResponse" name="getSimpleAttributeValueResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AperteWsWrongArgumentException" name="AperteWsWrongArgumentException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getActiveConfigurations">
+      <wsdl:input message="tns:getActiveConfigurations" name="getActiveConfigurations">
+    </wsdl:input>
+      <wsdl:output message="tns:getActiveConfigurationsResponse" name="getActiveConfigurationsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllActionsListFromDefinition">
+      <wsdl:input message="tns:getAllActionsListFromDefinition" name="getAllActionsListFromDefinition">
+    </wsdl:input>
+      <wsdl:output message="tns:getAllActionsListFromDefinitionResponse" name="getAllActionsListFromDefinitionResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AperteWsWrongArgumentException" name="AperteWsWrongArgumentException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findOrCreateUser">
+      <wsdl:input message="tns:findOrCreateUser" name="findOrCreateUser">
+    </wsdl:input>
+      <wsdl:output message="tns:findOrCreateUserResponse" name="findOrCreateUserResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setSimpleAttribute">
+      <wsdl:input message="tns:setSimpleAttribute" name="setSimpleAttribute">
+    </wsdl:input>
+      <wsdl:output message="tns:setSimpleAttributeResponse" name="setSimpleAttributeResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AperteWsWrongArgumentException" name="AperteWsWrongArgumentException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserHistory">
+      <wsdl:input message="tns:getUserHistory" name="getUserHistory">
+    </wsdl:input>
+      <wsdl:output message="tns:getUserHistoryResponse" name="getUserHistoryResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AperteWsWrongArgumentException" name="AperteWsWrongArgumentException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getProcessInstanceByInternalIdMap">
+      <wsdl:input message="tns:getProcessInstanceByInternalIdMap" name="getProcessInstanceByInternalIdMap">
+    </wsdl:input>
+      <wsdl:output message="tns:getProcessInstanceByInternalIdMapResponse" name="getProcessInstanceByInternalIdMapResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserProcessesBetweenDatesByUserLogin">
+      <wsdl:input message="tns:getUserProcessesBetweenDatesByUserLogin" name="getUserProcessesBetweenDatesByUserLogin">
+    </wsdl:input>
+      <wsdl:output message="tns:getUserProcessesBetweenDatesByUserLoginResponse" name="getUserProcessesBetweenDatesByUserLoginResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AperteWsWrongArgumentException" name="AperteWsWrongArgumentException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="searchProcesses">
+      <wsdl:input message="tns:searchProcesses" name="searchProcesses">
+    </wsdl:input>
+      <wsdl:output message="tns:searchProcessesResponse" name="searchProcessesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AperteWsIllegalArgumentException" name="AperteWsIllegalArgumentException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getProcessInstanceByExternalId">
+      <wsdl:input message="tns:getProcessInstanceByExternalId" name="getProcessInstanceByExternalId">
+    </wsdl:input>
+      <wsdl:output message="tns:getProcessInstanceByExternalIdResponse" name="getProcessInstanceByExternalIdResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getSimpleAttributesList">
+      <wsdl:input message="tns:getSimpleAttributesList" name="getSimpleAttributesList">
+    </wsdl:input>
+      <wsdl:output message="tns:getSimpleAttributesListResponse" name="getSimpleAttributesListResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AperteWsWrongArgumentException" name="AperteWsWrongArgumentException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getActiveConfigurationByKey">
+      <wsdl:input message="tns:getActiveConfigurationByKey" name="getActiveConfigurationByKey">
+    </wsdl:input>
+      <wsdl:output message="tns:getActiveConfigurationByKeyResponse" name="getActiveConfigurationByKeyResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AperteWsWrongArgumentException" name="AperteWsWrongArgumentException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findUser">
+      <wsdl:input message="tns:findUser" name="findUser">
+    </wsdl:input>
+      <wsdl:output message="tns:findUserResponse" name="findUserResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AperteWsWrongArgumentException" name="AperteWsWrongArgumentException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getProcessInstanceByInternalId">
+      <wsdl:input message="tns:getProcessInstanceByInternalId" name="getProcessInstanceByInternalId">
+    </wsdl:input>
+      <wsdl:output message="tns:getProcessInstanceByInternalIdResponse" name="getProcessInstanceByInternalIdResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AperteWsWrongArgumentException" name="AperteWsWrongArgumentException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AperteWorkflowDataServiceImplServiceSoapBinding" type="tns:AperteWorkflowDataServiceImpl">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="deleteProcessInstance">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="deleteProcessInstance">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deleteProcessInstanceResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AperteWsWrongArgumentException">
+        <soap:fault name="AperteWsWrongArgumentException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSimpleAttributeValue">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getSimpleAttributeValue">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getSimpleAttributeValueResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AperteWsWrongArgumentException">
+        <soap:fault name="AperteWsWrongArgumentException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getActiveConfigurations">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getActiveConfigurations">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getActiveConfigurationsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAllActionsListFromDefinition">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getAllActionsListFromDefinition">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAllActionsListFromDefinitionResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AperteWsWrongArgumentException">
+        <soap:fault name="AperteWsWrongArgumentException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="findOrCreateUser">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="findOrCreateUser">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="findOrCreateUserResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setSimpleAttribute">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="setSimpleAttribute">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="setSimpleAttributeResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AperteWsWrongArgumentException">
+        <soap:fault name="AperteWsWrongArgumentException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserHistory">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getUserHistory">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getUserHistoryResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AperteWsWrongArgumentException">
+        <soap:fault name="AperteWsWrongArgumentException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getProcessInstanceByInternalIdMap">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getProcessInstanceByInternalIdMap">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getProcessInstanceByInternalIdMapResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserProcessesBetweenDatesByUserLogin">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getUserProcessesBetweenDatesByUserLogin">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getUserProcessesBetweenDatesByUserLoginResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AperteWsWrongArgumentException">
+        <soap:fault name="AperteWsWrongArgumentException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="searchProcesses">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="searchProcesses">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchProcessesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AperteWsIllegalArgumentException">
+        <soap:fault name="AperteWsIllegalArgumentException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getProcessInstanceByExternalId">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getProcessInstanceByExternalId">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getProcessInstanceByExternalIdResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findUser">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="findUser">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="findUserResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AperteWsWrongArgumentException">
+        <soap:fault name="AperteWsWrongArgumentException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getActiveConfigurationByKey">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getActiveConfigurationByKey">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getActiveConfigurationByKeyResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AperteWsWrongArgumentException">
+        <soap:fault name="AperteWsWrongArgumentException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSimpleAttributesList">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getSimpleAttributesList">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getSimpleAttributesListResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AperteWsWrongArgumentException">
+        <soap:fault name="AperteWsWrongArgumentException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getProcessInstanceByInternalId">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getProcessInstanceByInternalId">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getProcessInstanceByInternalIdResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AperteWsWrongArgumentException">
+        <soap:fault name="AperteWsWrongArgumentException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AperteWorkflowDataServiceImplService">
+    <wsdl:port binding="tns:AperteWorkflowDataServiceImplServiceSoapBinding" name="AperteWorkflowDataServiceImplPort">
+      <soap:address location="http://localhost:8080/aperteworkflow/services/data" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

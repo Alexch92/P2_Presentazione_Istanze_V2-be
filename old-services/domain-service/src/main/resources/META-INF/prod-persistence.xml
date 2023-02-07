@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence 
+	version="2.0" xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	    <persistence-unit name="gepred" transaction-type="JTA">
+		<provider>org.eclipse.persistence.platform.database.PostgreSQLPlatform</provider>
+		<jta-data-source>java:jboss/datasources/GepredPool</jta-data-source>
+		<!-- Application domain -->
+		<class>it.sincon.gepred.domain.Ente</class>
+		<class>it.sincon.gepred.domain.Referente</class>
+		<class>it.sincon.gepred.domain.pratica.Tab</class>
+		<class>it.sincon.gepred.domain.pratica.TipoPraticaTab</class>
+		<class>it.sincon.gepred.domain.Immobile</class>
+		<class>it.sincon.gepred.domain.Allegati</class>
+		<class>it.osapulie.domain.TimbroConfig</class>
+		<class>it.sincon.gepred.domain.Quartiere</class>
+		<class>it.sincon.gepred.domain.TipoImmobile</class>
+		<class>it.sincon.gepred.domain.pratica.Modelli</class>
+		<class>it.sincon.gepred.domain.AllegatiPratica</class>
+		<class>it.sincon.gepred.domain.DatiInvioMail</class>
+		<class>it.sincon.gepred.domain.Attivita</class>
+		<class>it.sincon.gepred.domain.AttivitaPratica</class>
+		<class>it.sincon.gepred.domain.pratica.Pratica</class>
+		<class>it.sincon.gepred.domain.AllegatiFascicoloTemp</class>
+		<class>it.sincon.gepred.domain.pratica.FascicoloTemporaneo</class>
+		<class>it.sincon.gepred.domain.pratica.EsitoParere</class>
+		<class>it.sincon.gepred.domain.pratica.EsitoIstruttoria</class>
+		<class>it.sincon.gepred.domain.CampiAggiuntivi</class>
+		<class>it.sincon.gepred.domain.CampiAggiuntiviListaValori</class>
+		<class>it.sincon.gepred.domain.CampiAggiuntiviTipoPratica</class>
+		<class>it.sincon.gepred.domain.TipoPraticaAttivita</class>
+		<class>it.sincon.gepred.domain.pratica.Parere</class>
+		<class>it.sincon.gepred.domain.UserLog</class>
+		<class>it.sincon.gepred.domain.pratica.TipoParere</class>
+		<class>it.sincon.gepred.domain.CampiAggiuntiviPratica</class>
+		<class>it.sincon.gepred.domain.pratica.PraticaWeb</class>
+		<class>it.sincon.gepred.domain.CampiAggiuntiviPraticaWeb</class>
+		<class>it.sincon.gepred.domain.pratica.DatiCatastaliImmobile</class>
+		<class>it.sincon.gepred.domain.pratica.Superfici</class>
+		<class>it.sincon.gepred.domain.pratica.TipoPratica</class>
+		<class>it.sincon.gepred.domain.pratica.StatoPratica</class>
+		<class>it.sincon.gepred.domain.pratica.Qualifica</class>
+		<class>it.sincon.gepred.domain.pratica.TipoIntervento</class>
+		<class>it.sincon.gepred.domain.pratica.Figura</class>
+		<class>it.sincon.gepred.domain.pratica.CategoriePratiche</class>
+		<class>it.sincon.gepred.domain.pratica.NumeroPratica</class>
+		<class>it.sincon.gepred.domain.pratica.UrpMailAccount</class>
+		<class>it.sincon.gepred.domain.pratica.DatiMailInviate</class>
+		<class>it.sincon.gepred.domain.pratica.RappresentanteLegale</class>
+		<class>it.sincon.gepred.domain.pratica.Preventivo</class>
+		<class>it.sincon.gepred.domain.pratica.Azienda</class>
+		<class>it.sincon.gepred.domain.pratica.AziendaRappresentanti</class>
+		
+		<class>it.osapulie.domain.Permesso</class>
+		<class>it.osapulie.domain.Ruolo</class>
+		<class>it.osapulie.domain.Indirizzo</class>
+		<class>it.osapulie.domain.ProfiloUtente</class>
+		<class>it.osapulie.domain.fascicoloutente.FascicoloUtente</class>
+		<class>it.osapulie.domain.servizi.Servizio</class>
+		<class>it.osapulie.domain.fascicoloutente.RichiestaServizio</class>
+		<class>it.osapulie.domain.Comune</class>
+		<class>it.osapulie.domain.Provincia</class>
+		<class>it.osapulie.domain.Pin</class>
+		
+        <properties>
+            <property name="eclipselink.weaving" value="static" />
+        	<!--
+        		See http://wiki.eclipse.org/Using_EclipseLink_JPA_Extensions_%28ELUG%29 
+        	 -->
+            <property name="eclipselink.logging.level" value="WARNING" />
+            <property name="eclipselink.logging.thread" value="false" />
+            <property name="eclipselink.logging.session" value="false" />
+            <property name="eclipselink.logging.exceptions" value="true" />
+            <property name="eclipselink.logging.timestamp" value="false"/>     
+            
+            <property name="eclipselink.cache.shared.default" value="false"/>
+			<property name="eclipselink.cache.size.default" value="0"/>
+			<property name="eclipselink.cache.type.default" value="None"/>
+			
+			<property name="eclipselink.jpa.uppercase-column-names" value="true"/>
+                   
+        </properties>
+    </persistence-unit>
+</persistence>

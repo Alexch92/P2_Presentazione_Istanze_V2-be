@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://cup.sanita.puglia.it/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://cup.sanita.puglia.it/">
+	<xsd:complexType name="Unita">
+		<xsd:sequence>
+            <xsd:element name="idUnita" nillable="true" type="xsd:string"/>
+			 <xsd:element name="descUnita" nillable="true" type="xsd:string"/>
+            <xsd:element name="nomeUnita" nillable="true" type="xsd:string"/>
+            <xsd:element name="indirizzoUnita" nillable="true" type="xsd:string"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

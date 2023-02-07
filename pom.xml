@@ -17,6 +17,8 @@
 		<java.version>1.8</java.version>
 		<validation-api.version>2.0.1.Final</validation-api.version>
 		<tests.skip>true</tests.skip>
+		<spring.security.version>3.0.7.RELEASE</spring.security.version>
+		<jasper-reports.version>5.6.0</jasper-reports.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -50,11 +52,11 @@
 				<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
+		</dependency> -->
 
 		<dependency>
 			<groupId>javax.validation</groupId>
@@ -110,5 +112,6 @@
     <module>DataAccess</module>
     <module>Services</module>
     <module>Tests</module>
+	<module>old-services</module>
   </modules>
 </project>

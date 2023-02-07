@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://cup.sanita.puglia.it/" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://cup.sanita.puglia.it/">
+	<xsd:include schemaLocation="listaPrestazioni.xsd"/>
+	<xsd:include schemaLocation="appuntamento.xsd"/>
+	<xsd:complexType name="ListaAppuntamenti">
+		<xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="0" name="appuntamento" type="tns:Appuntamento"/>
+		</xsd:sequence>
+	</xsd:complexType>	
+	<xsd:complexType name="Prescrizione">
+		<xsd:sequence>						
+            <xsd:element name="numPrescrizione" nillable="true" type="xsd:string"/>
+            <xsd:element name="idPrescrizione" nillable="true" type="xsd:string"/>
+			<xsd:element name="idPrescrizioneRmt"  minOccurs="0"  nillable="true" type="xsd:string"/>
+            <xsd:element name="convenzione" nillable="true" type="xsd:string"/>
+            <xsd:element name="tipoPrescrizione" nillable="true" type="xsd:string"/>
+            <xsd:element name="tipoErogazione" nillable="true" type="xsd:string"/>
+            <xsd:element name="numeroImpegnativa" nillable="true" type="xsd:string"/>
+			<xsd:element name="dataImpegnativa" minOccurs="0" nillable="true" type="xsd:string"/>
+			<xsd:element name="codiceEsenzione" nillable="true" type="xsd:string"/>
+			 <xsd:element name="classePriorita" nillable="true" type="xsd:string"/>
+            <xsd:element name="costoPrescrizione" nillable="true" type="xsd:string"/>
+            <xsd:element name="listaPrestazioni" nillable="true"   minOccurs="0" type="tns:ListaPrestazioni"/>
+			<xsd:element name="listaAppuntamenti" nillable="true" minOccurs="0" type="tns:ListaAppuntamenti"/>
+		</xsd:sequence>
+	</xsd:complexType>
+</xsd:schema>

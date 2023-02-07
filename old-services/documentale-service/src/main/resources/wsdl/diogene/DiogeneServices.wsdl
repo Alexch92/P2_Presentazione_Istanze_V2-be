@@ -1,0 +1,865 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://diogenews.sistemapuglia.innovapuglia.it" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://diogenews.sistemapuglia.innovapuglia.it" xmlns:intf="http://diogenews.sistemapuglia.innovapuglia.it" xmlns:tns1="http://model.diogenews.sistemapuglia.innovapuglia.it" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://diogenews.sistemapuglia.innovapuglia.it" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://model.diogenews.sistemapuglia.innovapuglia.it"/>
+   <element name="download">
+    <complexType>
+     <sequence>
+      <element name="username" type="xsd:string"/>
+      <element name="idDocumento" type="xsd:string"/>
+      <element name="idVersione" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="downloadResponse">
+    <complexType>
+     <sequence>
+      <element name="downloadReturn" type="tns1:WS_Download"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_xsd_string">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="nuovaCartella">
+    <complexType>
+     <sequence>
+      <element name="username" type="xsd:string"/>
+      <element name="cartella" type="tns1:WS_NuovaCartella"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_tns1_Permesso">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:Permesso"/>
+    </sequence>
+   </complexType>
+   <element name="nuovaCartellaResponse">
+    <complexType>
+     <sequence>
+      <element name="nuovaCartellaReturn" type="tns1:WS_Dettaglio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_tns1_WS_InfoDocumento">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:WS_InfoDocumento"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOf_tns1_Attributo">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:Attributo"/>
+    </sequence>
+   </complexType>
+   <element name="nuovoFascicolo">
+    <complexType>
+     <sequence>
+      <element name="username" type="xsd:string"/>
+      <element name="fascicolo" type="tns1:WS_NuovoFascicolo"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="nuovoFascicoloResponse">
+    <complexType>
+     <sequence>
+      <element name="nuovoFascicoloReturn" type="tns1:WS_Dettaglio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="nuovaVersione">
+    <complexType>
+     <sequence>
+      <element name="username" type="xsd:string"/>
+      <element name="idDocumento" type="xsd:string"/>
+      <element name="tipoContenitore" type="xsd:string"/>
+      <element name="nomeFile" type="xsd:string"/>
+      <element name="cotenutoFile" type="xsd:base64Binary"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="nuovaVersioneResponse">
+    <complexType>
+     <sequence>
+      <element name="nuovaVersioneReturn" type="tns1:WS_Dettaglio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="nuovoDocumento">
+    <complexType>
+     <sequence>
+      <element name="username" type="xsd:string"/>
+      <element name="tipoContenitore" type="xsd:string"/>
+      <element name="ws_documento" type="tns1:WS_NuovoDocumento"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="nuovoDocumentoResponse">
+    <complexType>
+     <sequence>
+      <element name="nuovoDocumentoReturn" type="tns1:WS_Dettaglio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="mostraContenuto">
+    <complexType>
+     <sequence>
+      <element name="username" type="xsd:string"/>
+      <element name="idAggregato" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="mostraContenutoResponse">
+    <complexType>
+     <sequence>
+      <element name="mostraContenutoReturn" type="tns1:WS_MostraContenuto"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_tns1_WS_Aggregato">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="tns1:WS_Aggregato"/>
+    </sequence>
+   </complexType>
+   <element name="leggiDettaglio">
+    <complexType>
+     <sequence>
+      <element name="username" type="xsd:string"/>
+      <element name="idOggetto" type="xsd:string"/>
+      <element name="tipoOggetto" type="xsd:string"/>
+      <element name="tipoContenitore" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="leggiDettaglioResponse">
+    <complexType>
+     <sequence>
+      <element name="leggiDettaglioReturn" type="tns1:WS_Dettaglio"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="ricerca">
+    <complexType>
+     <sequence>
+      <element name="username" type="xsd:string"/>
+      <element name="maxDoc" type="xsd:int"/>
+      <element name="ricercaType" type="tns1:WS_RicercaType"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="ricercaResponse">
+    <complexType>
+     <sequence>
+      <element name="ricercaReturn" type="tns1:WS_RicercaResult"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="spostaDocumento">
+    <complexType>
+     <sequence>
+      <element name="username" type="xsd:string"/>
+      <element name="idDocumento" type="xsd:string"/>
+      <element name="tipoContenitore" type="xsd:string"/>
+      <element name="idAggregatoDestinazione" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="spostaDocumentoResponse">
+    <complexType>
+     <sequence>
+      <element name="spostaDocumentoReturn" type="tns1:WS_Dettaglio"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://model.diogenews.sistemapuglia.innovapuglia.it" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://diogenews.sistemapuglia.innovapuglia.it"/>
+   <complexType name="WS_Result">
+    <sequence>
+     <element name="codice" type="xsd:int"/>
+     <element name="messaggio" nillable="true" type="xsd:string"/>
+     <element name="warning" nillable="true" type="impl:ArrayOf_xsd_string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WS_FileType">
+    <sequence>
+     <element name="autore" nillable="true" type="xsd:string"/>
+     <element name="fileContent" nillable="true" type="xsd:base64Binary"/>
+     <element name="fileName" nillable="true" type="xsd:string"/>
+     <element name="fileSize" nillable="true" type="xsd:string"/>
+     <element name="idAggregatoContenitore" nillable="true" type="xsd:string"/>
+     <element name="idDocumento" nillable="true" type="xsd:string"/>
+     <element name="idDocumentoPadre" nillable="true" type="xsd:string"/>
+     <element name="idVersione" nillable="true" type="xsd:string"/>
+     <element name="mimeType" nillable="true" type="xsd:string"/>
+     <element name="titolo" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WS_Download">
+    <complexContent>
+     <extension base="tns1:WS_Result">
+      <sequence>
+       <element name="file" nillable="true" type="tns1:WS_FileType"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="Permesso">
+    <sequence>
+     <element name="admin" type="xsd:boolean"/>
+     <element name="delete" type="xsd:boolean"/>
+     <element name="nomeGruppo" nillable="true" type="xsd:string"/>
+     <element name="nomeUtente" nillable="true" type="xsd:string"/>
+     <element name="read" type="xsd:boolean"/>
+     <element name="write" type="xsd:boolean"/>
+    </sequence>
+   </complexType>
+   <complexType name="WS_NuovaCartella">
+    <sequence>
+     <element name="annotazioni" nillable="true" type="xsd:string"/>
+     <element name="descrizione" nillable="true" type="xsd:string"/>
+     <element name="idPadre" nillable="true" type="xsd:string"/>
+     <element name="nomeAggregato" nillable="true" type="xsd:string"/>
+     <element name="permessi" nillable="true" type="impl:ArrayOf_tns1_Permesso"/>
+    </sequence>
+   </complexType>
+   <complexType name="WS_Aggregato">
+    <sequence>
+     <element name="dataCreazione" nillable="true" type="xsd:string"/>
+     <element name="idAggregato" nillable="true" type="xsd:string"/>
+     <element name="idPadre" nillable="true" type="xsd:string"/>
+     <element name="nomeAggregato" nillable="true" type="xsd:string"/>
+     <element name="owner" nillable="true" type="xsd:string"/>
+     <element name="path" nillable="true" type="xsd:string"/>
+     <element name="permessi" nillable="true" type="impl:ArrayOf_tns1_Permesso"/>
+     <element name="stato" nillable="true" type="xsd:string"/>
+     <element name="tipoAggregato" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WS_Cartella">
+    <complexContent>
+     <extension base="tns1:WS_Aggregato">
+      <sequence>
+       <element name="annotazioni" nillable="true" type="xsd:string"/>
+       <element name="descrizione" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="WS_InfoDocumento">
+    <sequence>
+     <element name="autore" nillable="true" type="xsd:string"/>
+     <element name="dataCreazione" nillable="true" type="xsd:string"/>
+     <element name="fileName" nillable="true" type="xsd:string"/>
+     <element name="idAggregatoContenitore" nillable="true" type="xsd:string"/>
+     <element name="idDocumento" nillable="true" type="xsd:string"/>
+     <element name="idDocumentoPadre" nillable="true" type="xsd:string"/>
+     <element name="idVersione" nillable="true" type="xsd:string"/>
+     <element name="numVersione" nillable="true" type="xsd:string"/>
+     <element name="tipoDocumento" nillable="true" type="xsd:string"/>
+     <element name="titolo" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WS_Protocollo">
+    <sequence>
+     <element name="anno" nillable="true" type="xsd:string"/>
+     <element name="aoo" nillable="true" type="xsd:string"/>
+     <element name="data" nillable="true" type="xsd:string"/>
+     <element name="destinatario" nillable="true" type="xsd:string"/>
+     <element name="idVoceTitolario" nillable="true" type="xsd:string"/>
+     <element name="mittente" nillable="true" type="xsd:string"/>
+     <element name="note" nillable="true" type="xsd:string"/>
+     <element name="numero" nillable="true" type="xsd:string"/>
+     <element name="oggetto" nillable="true" type="xsd:string"/>
+     <element name="tipoProtocollo" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WS_Repertorio">
+    <sequence>
+     <element name="data" nillable="true" type="xsd:string"/>
+     <element name="numero" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="Attributo">
+    <sequence>
+     <element name="descrizione" nillable="true" type="xsd:string"/>
+     <element name="nome" nillable="true" type="xsd:string"/>
+     <element name="tipo" nillable="true" type="xsd:string"/>
+     <element name="valore" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WS_TipologiaDocumento">
+    <sequence>
+     <element name="attributi" nillable="true" type="impl:ArrayOf_tns1_Attributo"/>
+     <element name="descrizione" nillable="true" type="xsd:string"/>
+     <element name="nome" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WS_Documento">
+    <complexContent>
+     <extension base="tns1:WS_InfoDocumento">
+      <sequence>
+       <element name="allegati" nillable="true" type="impl:ArrayOf_tns1_WS_InfoDocumento"/>
+       <element name="annotazioni" nillable="true" type="xsd:string"/>
+       <element name="canaleInvio" nillable="true" type="xsd:string"/>
+       <element name="canaleRicezione" nillable="true" type="xsd:string"/>
+       <element name="checkedOut" type="xsd:boolean"/>
+       <element name="checkoutUser" nillable="true" type="xsd:string"/>
+       <element name="cifra" nillable="true" type="xsd:string"/>
+       <element name="cup" nillable="true" type="xsd:string"/>
+       <element name="dataChekin" nillable="true" type="xsd:string"/>
+       <element name="dataDocumento" nillable="true" type="xsd:string"/>
+       <element name="dataRicevimento" nillable="true" type="xsd:string"/>
+       <element name="dataTrasmissione" nillable="true" type="xsd:string"/>
+       <element name="descrizione" nillable="true" type="xsd:string"/>
+       <element name="destinatario" nillable="true" type="xsd:string"/>
+       <element name="elaboraAllegati" nillable="true" type="xsd:string"/>
+       <element name="fileSize" nillable="true" type="xsd:string"/>
+       <element name="flagDaProtocollare" nillable="true" type="xsd:boolean"/>
+       <element name="flagDatiPersonali" nillable="true" type="xsd:boolean"/>
+       <element name="flagDatiRiservati" nillable="true" type="xsd:boolean"/>
+       <element name="flagDatiSensibili" nillable="true" type="xsd:boolean"/>
+       <element name="flagFirma" nillable="true" type="xsd:boolean"/>
+       <element name="flagTimestamp" nillable="true" type="xsd:boolean"/>
+       <element name="luogoDocumento" nillable="true" type="xsd:string"/>
+       <element name="mimeType" nillable="true" type="xsd:string"/>
+       <element name="mittente" nillable="true" type="xsd:string"/>
+       <element name="natura" nillable="true" type="xsd:string"/>
+       <element name="permessi" nillable="true" type="impl:ArrayOf_tns1_Permesso"/>
+       <element name="protocollo" nillable="true" type="tns1:WS_Protocollo"/>
+       <element name="repertorio" nillable="true" type="tns1:WS_Repertorio"/>
+       <element name="stato" nillable="true" type="xsd:string"/>
+       <element name="tipoCanaleInvio" nillable="true" type="xsd:string"/>
+       <element name="tipoCanaleRicezione" nillable="true" type="xsd:string"/>
+       <element name="tipologia" nillable="true" type="tns1:WS_TipologiaDocumento"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="WS_NumerazioneFascicolo">
+    <sequence>
+     <element name="anno" nillable="true" type="xsd:int"/>
+     <element name="numero" nillable="true" type="xsd:int"/>
+     <element name="numeroInterno" nillable="true" type="xsd:string"/>
+     <element name="numeroLegislatura" nillable="true" type="xsd:string"/>
+     <element name="tipologiaNumerazione" nillable="true" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="WS_SoggettoFascicolo">
+    <sequence>
+     <element name="codiceFiscale" nillable="true" type="xsd:string"/>
+     <element name="soggetto" nillable="true" type="xsd:string"/>
+     <element name="tipo" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WS_FascicoloReale">
+    <complexContent>
+     <extension base="tns1:WS_Aggregato">
+      <sequence>
+       <element name="annotazioni" nillable="true" type="xsd:string"/>
+       <element name="codicePratica" nillable="true" type="xsd:string"/>
+       <element name="cup" nillable="true" type="xsd:string"/>
+       <element name="dataFine" nillable="true" type="xsd:string"/>
+       <element name="dataInizio" nillable="true" type="xsd:string"/>
+       <element name="descrizione" nillable="true" type="xsd:string"/>
+       <element name="flagDatiPersonali" nillable="true" type="xsd:boolean"/>
+       <element name="flagDatiRiservati" nillable="true" type="xsd:boolean"/>
+       <element name="flagDatiSensibili" nillable="true" type="xsd:boolean"/>
+       <element name="idBando" nillable="true" type="xsd:string"/>
+       <element name="idPadreReale" nillable="true" type="xsd:string"/>
+       <element name="idTitolario" nillable="true" type="xsd:string"/>
+       <element name="idVoceTitolario" nillable="true" type="xsd:string"/>
+       <element name="localizzazione" nillable="true" type="xsd:string"/>
+       <element name="mir" nillable="true" type="xsd:string"/>
+       <element name="numerazione" nillable="true" type="tns1:WS_NumerazioneFascicolo"/>
+       <element name="oggetto" nillable="true" type="xsd:string"/>
+       <element name="protocollo" nillable="true" type="tns1:WS_Protocollo"/>
+       <element name="soggetto" nillable="true" type="tns1:WS_SoggettoFascicolo"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="WS_FascicoloTemporaneo">
+    <complexContent>
+     <extension base="tns1:WS_Aggregato">
+      <sequence>
+       <element name="annotazioni" nillable="true" type="xsd:string"/>
+       <element name="codice" nillable="true" type="xsd:string"/>
+       <element name="dataFine" nillable="true" type="xsd:string"/>
+       <element name="dataInizio" nillable="true" type="xsd:string"/>
+       <element name="descrizione" nillable="true" type="xsd:string"/>
+       <element name="idTitolario" nillable="true" type="xsd:string"/>
+       <element name="idVoceTitolario" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="WS_Dettaglio">
+    <complexContent>
+     <extension base="tns1:WS_Result">
+      <sequence>
+       <element name="cartella" nillable="true" type="tns1:WS_Cartella"/>
+       <element name="documento" nillable="true" type="tns1:WS_Documento"/>
+       <element name="fascicolo" nillable="true" type="tns1:WS_FascicoloReale"/>
+       <element name="temporaneo" nillable="true" type="tns1:WS_FascicoloTemporaneo"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="WS_NuovoFascicolo">
+    <sequence>
+     <element name="annotazioni" nillable="true" type="xsd:string"/>
+     <element name="codicePratica" nillable="true" type="xsd:string"/>
+     <element name="cup" nillable="true" type="xsd:string"/>
+     <element name="descrizione" nillable="true" type="xsd:string"/>
+     <element name="flagDatiPersonali" nillable="true" type="xsd:boolean"/>
+     <element name="flagDatiRiservati" nillable="true" type="xsd:boolean"/>
+     <element name="flagDatiSensibili" nillable="true" type="xsd:boolean"/>
+     <element name="idBando" nillable="true" type="xsd:string"/>
+     <element name="idPadre" nillable="true" type="xsd:string"/>
+     <element name="idTitolario" nillable="true" type="xsd:string"/>
+     <element name="idVoceTitolario" nillable="true" type="xsd:string"/>
+     <element name="localizzazione" nillable="true" type="xsd:string"/>
+     <element name="mir" nillable="true" type="xsd:string"/>
+     <element name="nomeAggregato" nillable="true" type="xsd:string"/>
+     <element name="numerazione" nillable="true" type="tns1:WS_NumerazioneFascicolo"/>
+     <element name="oggetto" nillable="true" type="xsd:string"/>
+     <element name="permessi" nillable="true" type="impl:ArrayOf_tns1_Permesso"/>
+     <element name="protocollo" nillable="true" type="tns1:WS_Protocollo"/>
+     <element name="soggetto" nillable="true" type="tns1:WS_SoggettoFascicolo"/>
+    </sequence>
+   </complexType>
+   <complexType name="WS_NuovoDocumento">
+    <sequence>
+     <element name="annotazioni" nillable="true" type="xsd:string"/>
+     <element name="canaleInvio" nillable="true" type="xsd:string"/>
+     <element name="canaleRicezione" nillable="true" type="xsd:string"/>
+     <element name="cifra" nillable="true" type="xsd:string"/>
+     <element name="dataDocumento" nillable="true" type="xsd:string"/>
+     <element name="dataRicevimento" nillable="true" type="xsd:string"/>
+     <element name="dataTrasmissione" nillable="true" type="xsd:string"/>
+     <element name="descrizione" nillable="true" type="xsd:string"/>
+     <element name="destinatario" nillable="true" type="xsd:string"/>
+     <element name="file" nillable="true" type="tns1:WS_FileType"/>
+     <element name="flagDatiPersonali" nillable="true" type="xsd:boolean"/>
+     <element name="flagDatiRiservati" nillable="true" type="xsd:boolean"/>
+     <element name="flagDatiSensibili" nillable="true" type="xsd:boolean"/>
+     <element name="idAggregatoContenitore" nillable="true" type="xsd:string"/>
+     <element name="idDocumentoPadre" nillable="true" type="xsd:string"/>
+     <element name="localizzazione" nillable="true" type="xsd:string"/>
+     <element name="luogoDocumento" nillable="true" type="xsd:string"/>
+     <element name="mimeType" nillable="true" type="xsd:string"/>
+     <element name="mittente" nillable="true" type="xsd:string"/>
+     <element name="natura" nillable="true" type="xsd:string"/>
+     <element name="permessi" nillable="true" type="impl:ArrayOf_tns1_Permesso"/>
+     <element name="protocollo" nillable="true" type="tns1:WS_Protocollo"/>
+     <element name="repertorio" nillable="true" type="tns1:WS_Repertorio"/>
+     <element name="stato" nillable="true" type="xsd:string"/>
+     <element name="tipoCanaleInvio" nillable="true" type="xsd:string"/>
+     <element name="tipoCanaleRicezione" nillable="true" type="xsd:string"/>
+     <element name="tipoDocumento" nillable="true" type="xsd:string"/>
+     <element name="tipologia" nillable="true" type="tns1:WS_TipologiaDocumento"/>
+     <element name="titolo" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WS_MostraContenuto">
+    <complexContent>
+     <extension base="tns1:WS_Result">
+      <sequence>
+       <element name="aggregato" nillable="true" type="tns1:WS_Aggregato"/>
+       <element name="elencoAggregati" nillable="true" type="impl:ArrayOf_tns1_WS_Aggregato"/>
+       <element name="elencoDocumenti" nillable="true" type="impl:ArrayOf_tns1_WS_InfoDocumento"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="WS_RicercaType">
+    <sequence>
+     <element name="autore" nillable="true" type="xsd:string"/>
+     <element name="descrizione" nillable="true" type="xsd:string"/>
+     <element name="fileName" nillable="true" type="xsd:string"/>
+     <element name="nome" nillable="true" type="xsd:string"/>
+     <element name="stato" nillable="true" type="xsd:string"/>
+     <element name="tipoOggetti" nillable="true" type="impl:ArrayOf_xsd_string"/>
+    </sequence>
+   </complexType>
+   <complexType name="WS_RicercaResult">
+    <complexContent>
+     <extension base="tns1:WS_Result">
+      <sequence>
+       <element name="aggregati" nillable="true" type="impl:ArrayOf_tns1_WS_Aggregato"/>
+       <element name="documenti" nillable="true" type="impl:ArrayOf_tns1_WS_InfoDocumento"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="downloadRequest">
+
+      <wsdl:part element="impl:download" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="nuovoFascicoloRequest">
+
+      <wsdl:part element="impl:nuovoFascicolo" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="nuovaCartellaResponse">
+
+      <wsdl:part element="impl:nuovaCartellaResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="spostaDocumentoRequest">
+
+      <wsdl:part element="impl:spostaDocumento" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="leggiDettaglioResponse">
+
+      <wsdl:part element="impl:leggiDettaglioResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="mostraContenutoRequest">
+
+      <wsdl:part element="impl:mostraContenuto" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="spostaDocumentoResponse">
+
+      <wsdl:part element="impl:spostaDocumentoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="nuovaVersioneRequest">
+
+      <wsdl:part element="impl:nuovaVersione" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ricercaResponse">
+
+      <wsdl:part element="impl:ricercaResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="downloadResponse">
+
+      <wsdl:part element="impl:downloadResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="nuovoDocumentoResponse">
+
+      <wsdl:part element="impl:nuovoDocumentoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="leggiDettaglioRequest">
+
+      <wsdl:part element="impl:leggiDettaglio" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="nuovoFascicoloResponse">
+
+      <wsdl:part element="impl:nuovoFascicoloResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="nuovaCartellaRequest">
+
+      <wsdl:part element="impl:nuovaCartella" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="mostraContenutoResponse">
+
+      <wsdl:part element="impl:mostraContenutoResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="ricercaRequest">
+
+      <wsdl:part element="impl:ricerca" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="nuovoDocumentoRequest">
+
+      <wsdl:part element="impl:nuovoDocumento" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="nuovaVersioneResponse">
+
+      <wsdl:part element="impl:nuovaVersioneResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Diogene">
+
+      <wsdl:operation name="download">
+
+         <wsdl:input message="impl:downloadRequest" name="downloadRequest"/>
+
+         <wsdl:output message="impl:downloadResponse" name="downloadResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="nuovaCartella">
+
+         <wsdl:input message="impl:nuovaCartellaRequest" name="nuovaCartellaRequest"/>
+
+         <wsdl:output message="impl:nuovaCartellaResponse" name="nuovaCartellaResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="nuovoFascicolo">
+
+         <wsdl:input message="impl:nuovoFascicoloRequest" name="nuovoFascicoloRequest"/>
+
+         <wsdl:output message="impl:nuovoFascicoloResponse" name="nuovoFascicoloResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="nuovaVersione">
+
+         <wsdl:input message="impl:nuovaVersioneRequest" name="nuovaVersioneRequest"/>
+
+         <wsdl:output message="impl:nuovaVersioneResponse" name="nuovaVersioneResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="nuovoDocumento">
+
+         <wsdl:input message="impl:nuovoDocumentoRequest" name="nuovoDocumentoRequest"/>
+
+         <wsdl:output message="impl:nuovoDocumentoResponse" name="nuovoDocumentoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="mostraContenuto">
+
+         <wsdl:input message="impl:mostraContenutoRequest" name="mostraContenutoRequest"/>
+
+         <wsdl:output message="impl:mostraContenutoResponse" name="mostraContenutoResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="leggiDettaglio">
+
+         <wsdl:input message="impl:leggiDettaglioRequest" name="leggiDettaglioRequest"/>
+
+         <wsdl:output message="impl:leggiDettaglioResponse" name="leggiDettaglioResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ricerca">
+
+         <wsdl:input message="impl:ricercaRequest" name="ricercaRequest"/>
+
+         <wsdl:output message="impl:ricercaResponse" name="ricercaResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="spostaDocumento">
+
+         <wsdl:input message="impl:spostaDocumentoRequest" name="spostaDocumentoRequest"/>
+
+         <wsdl:output message="impl:spostaDocumentoResponse" name="spostaDocumentoResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="DiogeneSoapBinding" type="impl:Diogene">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="download">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="downloadRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="downloadResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="nuovaCartella">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="nuovaCartellaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="nuovaCartellaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="nuovoFascicolo">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="nuovoFascicoloRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="nuovoFascicoloResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="nuovaVersione">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="nuovaVersioneRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="nuovaVersioneResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="nuovoDocumento">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="nuovoDocumentoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="nuovoDocumentoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="mostraContenuto">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="mostraContenutoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="mostraContenutoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="leggiDettaglio">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="leggiDettaglioRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="leggiDettaglioResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="ricerca">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="ricercaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="ricercaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="spostaDocumento">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="spostaDocumentoRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="spostaDocumentoResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="DiogeneService">
+
+      <wsdl:port binding="impl:DiogeneSoapBinding" name="Diogene">
+
+         <wsdlsoap:address location="http://diogenews.sistema.puglia.it/services/Diogene"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
