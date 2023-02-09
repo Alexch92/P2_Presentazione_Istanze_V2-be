@@ -20,6 +20,24 @@
 		<spring.security.version>3.0.7.RELEASE</spring.security.version>
 		<jasper-reports.version>5.6.0</jasper-reports.version>
 	</properties>
+
+	<profiles>
+		<profile>
+			<id>FASCICULUS</id>
+			<properties>
+				<liferay.version>6.2.0-RC5</liferay.version>
+				<targetProject>__FASCICULUS</targetProject>
+			</properties>
+		</profile>
+		<profile>
+			<id>SANITA</id>
+			<properties>
+				<liferay.version>6.2.0-RC5</liferay.version>
+				<targetProject>__SANITA</targetProject>
+			</properties>
+		</profile>
+	</profiles>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -113,5 +131,6 @@
     <module>Services</module>
     <module>Tests</module>
 	<module>old-services</module>
+	<module>domain</module>
   </modules>
 </project>
