@@ -12,7 +12,7 @@ import it.sincon.p2_presentazione_istanze_v2.Services.commons.BaseService;
 import it.sincon.p2_presentazione_istanze_v2.Services.dtos.UserDTO;
 import it.sincon.p2_presentazione_istanze_v2.Services.mappers.UserMapper;
 
-@Service
+//@Service
 public class UserService extends BaseService<User, UserDTO> {
     
 

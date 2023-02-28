@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:component-scan
+		base-package="it.sincon.gepred.service" />
+	<context:component-scan
+		base-package="it.osapulie.service" />
+
+	<tx:annotation-driven />
+
+	<!-- <bean id="protocollo" class="it.sincon.gepred.protocollo.test.MockProtocolloService"> 
+		<property name="generaSituazioneAnomala" value="false"/> </bean> -->
+	<!--<bean id="protocollo" class="it.sincon.gepred.protocollo.folium.ProtocolloServiceFolium"> 
+		<property name="applicazione" value="${applicazione_protocollo}"/> <property 
+		name="codiceAmministrazione" value="${amministrazione_protocollo}"/> <property 
+		name="codiceAoo" value="${codice_aoo_protocollo}"/> <property name="urlEndpoint" 
+		value="${folium_protocollo_ws}"/> </bean> -->
+	<!-- <bean id="protocollo" class="it.sincon.gepred.protocollo.adoc.ProtocolloServiceAdoc"> 
+		<property name="amministrazione" value="${amministrazione_protocollo}"/> 
+		<property name="aoo" value="${codice_aoo_protocollo}"/> </bean> -->
+	<bean id="protocollo" class="it.sincon.gepred.protocollo.scatel.ProtocolloServiceScatel">
+		<property name="codiceAmministrazione" value="${amministrazione_protocollo}"/>
+		<property name="codiceAoo" value="${codice_aoo_protocollo}"/>
+		<property name="endpointAddress" value="${endpoint_protocollo}"/>
+		<property name="wso2TokenUserName" value="${wsse_security_username}"/>
+		<property name="wso2TokenPassword" value="${wsse_security_password}"/>
+		<property name="pathKeystoreServer" value="${pathKeystoreServer}"/>
+		<property name="passwordKeystore" value="${passwordKeystore}"/>
+		<property name="pathKeystoreClient" value="${pathKeystoreClient}"/>
+		<property name="tokenGenerateURL" value="${protocolloRUPAR_tokenGenerateURL}"/>
+		<property name="tokenAuthorization" value="${protocolloRUPAR_tokenAuthorization}"/>
+	</bean>
+
+	<!-- Gestione Documentale : Abilitare solo uno fra i beans seguenti: -->
+	<bean id="documentale" class="it.sincon.gepred.documentale.alfresco.DocumentaleServiceAlfrescoImpl">
+		<property name="alfrescoUser" value="${alfrescoUser}" />
+		<property name="alfrescoPsw" value="${alfrescoPsw}" />
+		<property name="alfrescoUri" value="${alfrescoUri}" />
+		<property name="alfrescoWorkSpaceUri" value="${alfrescoWorkSpaceUri}" />
+	</bean> 
+	<!-- <bean id="documentale" class="it.sincon.gepred.documentale.mock.DocumentaleServiceMockImpl" /> -->
+
+	<!-- Gestione Visura RegistroImprseRUPAR -->
+	<bean id="visura"
+		class="it.sincon.gepred.visura.rupar.impl.VisuraRegistroImprese">
+		<property name="pathKeystoreServer" value="${regImprRUPAR_pathKeystoreServer}" />
+		<property name="passwordKeystore" value="${regImprRUPAR_passwordKeystore}" />
+		<property name="pathKeystoreClient" value="${regImprRUPAR_pathKeystoreClient}" />
+		<property name="tokenGenerateURL" value="${regImprRUPAR_tokenGenerateURL}" />
+		<property name="tokenAuthorization"	value="${regImprRUPAR_tokenAuthorization}" />
+		<property name="visuraServiceURL" value="${regImprRUPAR_visuraServiceURL}" />
+		<property name="visuraServiceEncrKey" value="${regImprRUPAR_visuraServiceEncrKey}" />
+	</bean>
+</beans>

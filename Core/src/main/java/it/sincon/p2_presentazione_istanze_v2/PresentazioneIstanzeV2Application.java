@@ -4,6 +4,9 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
 
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,12 +14,31 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Component;
 import org.apache.commons.lang3.StringUtils;
+import it.sincon.gepred.persistence.*;
 
-@SpringBootApplication
+//@EntityScan("it.sincon.gepred.domain") 
+//@EnableJpaRepositories(basePackageClasses = AttivitaPraticaRepository.class)
+//@Configuration
+@SpringBootApplication(scanBasePackages=
+										{
+												"it.sincon.p2_presentazione_istanze_v2.DataAccess.repositories",
+												"it.sincon.p2_presentazione_istanze_v2.Services.mappers",
+												"it.sincon.p2_presentazione_istanze_v2.Services.services"
+//												"it.sincon.gepred.service",
+//												"it.osapulie.service",
+//												"it.sincon.gepred.persistence.impl",
+//												"it.osapulie.persistence.impl"
+										}
+)
+@ImportResource( { "service-layer-context.xml", "persistence-layer-context.xml" } )
 public class PresentazioneIstanzeV2Application {
 
 	private static final Logger log = LoggerFactory.getLogger(PresentazioneIstanzeV2Application.class);

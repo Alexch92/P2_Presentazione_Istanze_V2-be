@@ -87,11 +87,17 @@
 		</dependency>
 
 <!-- TODO://AGGIUNGERE DIPENDENZE DI ANTONIO -->
-		<!-- <dependency>
+		<dependency>
 			<groupId>it.sincon</groupId>
 			<artifactId>domain-service</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-		</dependency> -->
+		</dependency>
+		
+		<dependency>
+			<groupId>it.sincon</groupId>
+			<artifactId>domain</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 
  	</dependencies>
 
